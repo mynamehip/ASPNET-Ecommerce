@@ -1,0 +1,107 @@
+@model ASPNET_Ecommerce.Models.ViewModels.Admin.UserAdminListViewModel
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = T["Admin.Nav.Users"];
+}
+
+<div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">@T["Admin.Nav.Users"]</h1>
+        <p class="text-sm text-gray-500 mt-1">@T["Admin.Users.Description"]</p>
+    </div>
+
+    <form asp-area="Admin" asp-controller="Users" asp-action="Index" method="get" class="grid grid-cols-1 sm:grid-cols-[minmax(220px,1fr)_180px_auto] gap-3">
+        <input type="text" name="search" value="@Model.Search" placeholder="@T["Admin.Users.SearchPlaceholder"]"
+               class="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+
+        <select name="role" class="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition">
+            <option value="">@T["Admin.Users.AllRoles"]</option>
+            @foreach (var role in Model.AvailableRoles)
+            {
+                <option value="@role" selected="@(string.Equals(Model.Role, role, StringComparison.Ordinal))">@role</option>
+            }
+        </select>
+
+        <button type="submit"
+                class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition">
+            @T["Action.Filter"]
+        </button>
+    </form>
+</div>
+
+@if (TempData["StatusMessage"] is string statusMessage)
+{
+    <div class="flex items-center gap-2 p-4 mb-4 text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-lg">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        @statusMessage
+    </div>
+}
+
+<div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left">
+            <thead class="text-xs text-gray-500 uppercase bg-gray-50 border-b border-gray-100">
+                <tr>
+                    <th class="px-6 py-4">@T["Label.User"]</th>
+                    <th class="px-6 py-4">@T["Label.Role"]</th>
+                    <th class="px-6 py-4">@T["Label.Status"]</th>
+                    <th class="px-6 py-4">@T["Label.Orders"]</th>
+                    <th class="px-6 py-4">@T["Label.Joined"]</th>
+                    <th class="px-6 py-4 text-right">@T["Label.Actions"]</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                @if (Model.Users.Count == 0)
+                {
+                    <tr>
+                        <td colspan="6" class="px-6 py-12 text-center text-gray-400">@T["Admin.Users.Empty"]</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var user in Model.Users)
+                    {
+                        var roleClasses = user.Role switch
+                        {
+                            "Admin" => "bg-red-100 text-red-700",
+                            "Employee" => "bg-blue-100 text-blue-700",
+                            _ => "bg-gray-100 text-gray-700"
+                        };
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4">
+                                <div class="font-semibold text-gray-900">@user.FullName</div>
+                                <div class="text-xs text-gray-400 mt-0.5">@user.Email</div>
+                                @if (!string.IsNullOrWhiteSpace(user.PhoneNumber))
+                                {
+                                    <div class="text-xs text-gray-400 mt-0.5">@user.PhoneNumber</div>
+                                }
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold @roleClasses">@user.Role</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold @(user.EmailConfirmed ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700")">
+                                        @(user.EmailConfirmed ? T["Admin.Status.EmailConfirmed"] : T["Admin.Status.EmailPending"])
+                                    </span>
+                                    @if (user.IsLockedOut)
+                                    {
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700">@T["Admin.Status.Locked"]</span>
+                                    }
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-gray-600">@user.TotalOrders</td>
+                            <td class="px-6 py-4 text-gray-600">@user.CreatedAtUtc.ToLocalTime().ToString("dd MMM yyyy")</td>
+                            <td class="px-6 py-4 text-right">
+                                <a asp-area="Admin" asp-controller="Users" asp-action="Details" asp-route-id="@user.UserId"
+                                   class="px-3 py-1.5 text-xs font-medium text-brand-600 border border-brand-300 rounded-lg hover:bg-brand-50 transition">@T["Action.Manage"]</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

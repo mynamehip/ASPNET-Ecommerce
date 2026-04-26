@@ -1,0 +1,203 @@
+@model ASPNET_Ecommerce.Models.ViewModels.Order.CheckoutViewModel
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = T["Checkout.Title"];
+    var paymentLabel = string.Equals(Model.PaymentMethod.ToString(), "DemoGateway", StringComparison.Ordinal)
+        ? T["Payment.DemoGateway"]
+        : T["Payment.CashOnDelivery"];
+}
+
+<div class="flex items-center justify-between gap-4 mb-8">
+    <div>
+        <h1 class="text-3xl font-bold text-gray-900">@T["Checkout.Title"]</h1>
+        <p class="text-sm text-gray-500 mt-1">@T["Checkout.Description"]</p>
+    </div>
+    <a asp-controller="Cart" asp-action="Index"
+       class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        @T["Action.BackToCart"]
+    </a>
+</div>
+
+@if (TempData["OrderError"] is string orderError)
+{
+    <div class="mb-6 flex items-center gap-2 p-4 text-sm text-red-800 bg-red-50 border border-red-200 rounded-xl">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+        @orderError
+    </div>
+}
+
+<form asp-controller="Order" asp-action="Checkout" method="post" class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_360px] gap-8 items-start">
+    @Html.AntiForgeryToken()
+
+    <section class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-8">
+        <div class="mb-6">
+            <h2 class="text-xl font-bold text-gray-900">@T["Checkout.ShippingInformation"]</h2>
+            <p class="text-sm text-gray-500 mt-1">@T["Checkout.ShippingInformationDescription"]</p>
+        </div>
+
+        <div asp-validation-summary="ModelOnly" class="mb-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+                <label asp-for="FullName" class="block text-sm font-medium text-gray-700 mb-1">@T["Checkout.Field.FullName"]</label>
+                <input asp-for="FullName" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                <span asp-validation-for="FullName" class="text-red-500 text-sm mt-1"></span>
+            </div>
+            <div>
+                <label asp-for="PhoneNumber" class="block text-sm font-medium text-gray-700 mb-1">@T["Checkout.Field.PhoneNumber"]</label>
+                <input asp-for="PhoneNumber" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                <span asp-validation-for="PhoneNumber" class="text-red-500 text-sm mt-1"></span>
+            </div>
+            <div class="md:col-span-2">
+                <label asp-for="Email" class="block text-sm font-medium text-gray-700 mb-1">@T["Checkout.Field.Email"]</label>
+                <input asp-for="Email" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                <span asp-validation-for="Email" class="text-red-500 text-sm mt-1"></span>
+            </div>
+            <div class="md:col-span-2">
+                <label asp-for="Address" class="block text-sm font-medium text-gray-700 mb-1">@T["Checkout.Field.Address"]</label>
+                <input asp-for="Address" autocomplete="street-address" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                <span asp-validation-for="Address" class="text-red-500 text-sm mt-1"></span>
+            </div>
+            <div>
+                <label asp-for="Ward" class="block text-sm font-medium text-gray-700 mb-1">@T["Checkout.Field.Ward"]</label>
+                <input asp-for="Ward" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                <span asp-validation-for="Ward" class="text-red-500 text-sm mt-1"></span>
+            </div>
+            <div>
+                <label asp-for="Province" class="block text-sm font-medium text-gray-700 mb-1">@T["Checkout.Field.Province"]</label>
+                <input asp-for="Province" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                <span asp-validation-for="Province" class="text-red-500 text-sm mt-1"></span>
+            </div>
+            <div class="md:col-span-2">
+                <label asp-for="Notes" class="block text-sm font-medium text-gray-700 mb-1">@T["Checkout.Field.Notes"]</label>
+                <textarea asp-for="Notes" rows="4" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                <span asp-validation-for="Notes" class="text-red-500 text-sm mt-1"></span>
+            </div>
+            <div>
+                <label asp-for="PromoCode" class="block text-sm font-medium text-gray-700 mb-1">@T["Checkout.Field.PromoCode"]</label>
+                <input asp-for="PromoCode" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm uppercase focus:border-brand-500 focus:ring-brand-500 transition" />
+                <span asp-validation-for="PromoCode" class="text-red-500 text-sm mt-1"></span>
+            </div>
+            <div class="flex items-end">
+                @if (User.Identity?.IsAuthenticated ?? false)
+                {
+                    <label class="inline-flex items-center gap-2 text-sm text-gray-700">
+                        <input asp-for="SaveAsDefaultAddress" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>@T["Checkout.ReuseAddress"]</span>
+                    </label>
+                }
+            </div>
+            <div class="md:col-span-2 pt-3 border-t border-gray-100">
+                <label asp-for="PaymentMethod" class="block text-sm font-medium text-gray-700 mb-3">@T["Checkout.Field.PaymentMethod"]</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <label class="flex items-start gap-3 rounded-2xl border border-gray-200 px-4 py-4 cursor-pointer hover:border-brand-200 transition">
+                        <input asp-for="PaymentMethod" type="radio" value="CashOnDelivery" class="mt-1 h-4 w-4 border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>
+                            <span class="block text-sm font-semibold text-gray-900">@T["Payment.CashOnDelivery"]</span>
+                            <span class="block text-sm text-gray-500 mt-1">@T["Payment.CashOnDeliveryDescription"]</span>
+                        </span>
+                    </label>
+                    <label class="flex items-start gap-3 rounded-2xl border border-gray-200 px-4 py-4 cursor-pointer hover:border-brand-200 transition">
+                        <input asp-for="PaymentMethod" type="radio" value="DemoGateway" class="mt-1 h-4 w-4 border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>
+                            <span class="block text-sm font-semibold text-gray-900">@T["Payment.DemoGateway"]</span>
+                            <span class="block text-sm text-gray-500 mt-1">@T["Payment.DemoGatewayDescription"]</span>
+                        </span>
+                    </label>
+                </div>
+                <span asp-validation-for="PaymentMethod" class="text-red-500 text-sm mt-1"></span>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.PaymentInstructions))
+            {
+                <div class="md:col-span-2 rounded-2xl border border-brand-100 bg-brand-50 px-4 py-3 text-sm text-brand-900">
+                    <div class="font-semibold">@T["Payment.Guidance"]</div>
+                    <div class="mt-1 text-brand-800">@Model.PaymentInstructions</div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <aside class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sticky top-24">
+        <h2 class="text-xl font-bold text-gray-900">@T["Cart.OrderSummary"]</h2>
+        <div class="mt-5 space-y-4">
+            @foreach (var item in Model.Items)
+            {
+                <div class="flex items-start justify-between gap-3 border-b border-gray-100 pb-4 last:border-b-0 last:pb-0">
+                    <div class="min-w-0">
+                        <div class="text-sm font-semibold text-gray-900 line-clamp-2">@item.ProductName</div>
+                        @if (!string.IsNullOrWhiteSpace(item.ProductSku))
+                        {
+                            <div class="text-xs text-gray-400 mt-1">@T["Label.Sku", item.ProductSku]</div>
+                        }
+                        <div class="text-xs text-gray-500 mt-1">@T["Label.Qty", item.Quantity]</div>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <div class="text-sm font-semibold text-gray-900">@item.LineTotal.ToString("N0") VND</div>
+                        <div class="text-xs text-gray-400">@item.UnitPrice.ToString("N0") @T["Label.Each"]</div>
+                        @if (item.IsDiscountActive)
+                        {
+                            <div class="text-xs text-gray-300 line-through">@item.OriginalUnitPrice.ToString("N0") @T["Label.Each"]</div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="mt-6 space-y-4 border-t border-dashed border-gray-200 pt-4">
+            <div class="flex items-center justify-between text-sm text-gray-500">
+                <span>@T["Label.Items"]</span>
+                <span>@Model.ItemCount</span>
+            </div>
+            <div class="flex items-center justify-between text-sm text-gray-500">
+                <span>@T["Label.Subtotal"]</span>
+                <span>@Model.Subtotal.ToString("N0") @Model.CurrencyCode</span>
+            </div>
+            <div class="flex items-center justify-between text-sm text-gray-500">
+                <span>@T["Summary.Discount"]</span>
+                <span>-@Model.DiscountAmount.ToString("N0") @Model.CurrencyCode</span>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.AppliedPromoCode))
+            {
+                var promoDiscountText = Model.AppliedPromoDiscountPercentage?.ToString("0.##");
+                <div class="rounded-xl border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+                    @T["Summary.PromoApplied", Model.AppliedPromoCode]@if (!string.IsNullOrWhiteSpace(promoDiscountText)) {<span> (@promoDiscountText%)</span>}
+                </div>
+            }
+            <div class="flex items-center justify-between text-sm text-gray-500">
+                <span>@T["Summary.Shipping"]</span>
+                <span>@Model.ShippingFee.ToString("N0") @Model.CurrencyCode</span>
+            </div>
+            <div class="flex items-center justify-between text-sm text-gray-500">
+                <span>@T["Summary.Tax", Model.TaxRatePercentage.ToString("0.##") ]</span>
+                <span>@Model.TaxAmount.ToString("N0") @Model.CurrencyCode</span>
+            </div>
+            <div class="flex items-center justify-between text-sm text-gray-500">
+                <span>@T["Summary.Payment"]</span>
+                <span>@paymentLabel</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-base font-semibold text-gray-900">@T["Label.Total"]</span>
+                <span class="text-2xl font-bold text-brand-600">@Model.TotalAmount.ToString("N0") <span class="text-sm font-medium text-gray-400">@Model.CurrencyCode</span></span>
+            </div>
+        </div>
+
+        @if (Model.FreeShippingThreshold.HasValue)
+        {
+            <p class="mt-3 text-xs text-gray-400 leading-relaxed">@T["Checkout.FreeShippingThreshold", Model.FreeShippingThreshold.Value.ToString("N0"), Model.CurrencyCode]</p>
+        }
+
+        <button type="submit"
+                class="mt-6 w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            @T["Action.ConfirmOrder"]
+        </button>
+        <p class="mt-3 text-xs text-gray-400 leading-relaxed">@T["Checkout.SubmitValidationNote"]</p>
+    </aside>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

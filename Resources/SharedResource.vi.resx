@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Nav.Home" xml:space="preserve"><value>Trang chủ</value></data>
+  <data name="Nav.Products" xml:space="preserve"><value>Sản phẩm</value></data>
+  <data name="Nav.Wishlist" xml:space="preserve"><value>Yêu thích</value></data>
+  <data name="Nav.MyProfile" xml:space="preserve"><value>Hồ sơ</value></data>
+  <data name="Nav.MyOrders" xml:space="preserve"><value>Đơn hàng</value></data>
+  <data name="Nav.MyAccount" xml:space="preserve"><value>Tài khoản của tôi</value></data>
+  <data name="Nav.AdminPanel" xml:space="preserve"><value>Quản trị</value></data>
+  <data name="Nav.Cart" xml:space="preserve"><value>Giỏ hàng</value></data>
+  <data name="Nav.OpenCart" xml:space="preserve"><value>Mở giỏ hàng</value></data>
+  <data name="Nav.Login" xml:space="preserve"><value>Đăng nhập</value></data>
+  <data name="Nav.Register" xml:space="preserve"><value>Đăng ký</value></data>
+  <data name="Nav.Logout" xml:space="preserve"><value>Đăng xuất</value></data>
+  <data name="Theme.Toggle" xml:space="preserve"><value>Đổi giao diện</value></data>
+  <data name="Theme.Light" xml:space="preserve"><value>Sáng</value></data>
+  <data name="Theme.Dark" xml:space="preserve"><value>Tối</value></data>
+  <data name="Language.English" xml:space="preserve"><value>Tiếng Anh</value></data>
+  <data name="Language.Vietnamese" xml:space="preserve"><value>Tiếng Việt</value></data>
+  <data name="Notifications.Title" xml:space="preserve"><value>Cập nhật trực tiếp</value></data>
+  <data name="Footer.Privacy" xml:space="preserve"><value>Chính sách riêng tư</value></data>
+  <data name="Footer.RightsReserved" xml:space="preserve"><value>Bảo lưu mọi quyền.</value></data>
+  <data name="Action.AddToCart" xml:space="preserve"><value>Thêm vào giỏ</value></data>
+  <data name="Action.ApplyFilters" xml:space="preserve"><value>Áp dụng bộ lọc</value></data>
+  <data name="Action.Back" xml:space="preserve"><value>Quay lại</value></data>
+  <data name="Action.BackToCart" xml:space="preserve"><value>Quay lại giỏ hàng</value></data>
+  <data name="Action.BrowseProducts" xml:space="preserve"><value>Xem sản phẩm</value></data>
+  <data name="Action.Cancel" xml:space="preserve"><value>Hủy</value></data>
+  <data name="Action.ClearAllFilters" xml:space="preserve"><value>Xóa toàn bộ bộ lọc</value></data>
+  <data name="Action.ClearFilters" xml:space="preserve"><value>Xóa bộ lọc</value></data>
+  <data name="Action.ConfirmOrder" xml:space="preserve"><value>Xác nhận đơn hàng</value></data>
+  <data name="Action.ContinueShopping" xml:space="preserve"><value>Tiếp tục mua sắm</value></data>
+  <data name="Action.CreateAccount" xml:space="preserve"><value>Tạo tài khoản</value></data>
+  <data name="Action.CreateCategory" xml:space="preserve"><value>Tạo danh mục</value></data>
+  <data name="Action.CreateOne" xml:space="preserve"><value>Tạo mới</value></data>
+  <data name="Action.CreateProduct" xml:space="preserve"><value>Tạo sản phẩm</value></data>
+  <data name="Action.Delete" xml:space="preserve"><value>Xóa</value></data>
+  <data name="Action.Edit" xml:space="preserve"><value>Sửa</value></data>
+  <data name="Action.Filter" xml:space="preserve"><value>Lọc</value></data>
+  <data name="Action.LoginToReview" xml:space="preserve"><value>Đăng nhập</value></data>
+  <data name="Action.Manage" xml:space="preserve"><value>Quản lý</value></data>
+  <data name="Action.ManageUsers" xml:space="preserve"><value>Quản lý người dùng</value></data>
+  <data name="Action.OpenOrders" xml:space="preserve"><value>Mở danh sách đơn hàng</value></data>
+  <data name="Action.ProceedToCheckout" xml:space="preserve"><value>Tiến hành thanh toán</value></data>
+  <data name="Action.Remove" xml:space="preserve"><value>Xóa</value></data>
+  <data name="Action.RemoveFromWishlist" xml:space="preserve"><value>Xóa khỏi yêu thích</value></data>
+  <data name="Action.ReviewOrders" xml:space="preserve"><value>Xem đơn hàng</value></data>
+  <data name="Action.SaveToWishlist" xml:space="preserve"><value>Lưu vào yêu thích</value></data>
+  <data name="Action.SignIn" xml:space="preserve"><value>Đăng nhập</value></data>
+  <data name="Action.SubmitReview" xml:space="preserve"><value>Gửi đánh giá</value></data>
+  <data name="Action.Update" xml:space="preserve"><value>Cập nhật</value></data>
+  <data name="Action.ViewAll" xml:space="preserve"><value>Xem tất cả</value></data>
+  <data name="Action.ViewDetails" xml:space="preserve"><value>Xem chi tiết</value></data>
+  <data name="Admin.Categories.Description" xml:space="preserve"><value>Quản lý các nhóm danh mục dùng cho sản phẩm.</value></data>
+  <data name="Admin.Categories.DeleteConfirm" xml:space="preserve"><value>Xóa danh mục này?</value></data>
+  <data name="Admin.Categories.Empty" xml:space="preserve"><value>Chưa có danh mục nào được tạo.</value></data>
+  <data name="Admin.Categories.NoDescription" xml:space="preserve"><value>Không có mô tả</value></data>
+  <data name="Admin.Dashboard.AwaitingModeration" xml:space="preserve"><value>Đánh giá đang ẩn</value></data>
+  <data name="Admin.Dashboard.CatalogSummary" xml:space="preserve"><value>{0} sản phẩm đang hoạt động</value></data>
+  <data name="Admin.Dashboard.Description" xml:space="preserve"><value>Theo dõi tình trạng vận hành của người dùng, danh mục, đơn hàng và khả năng hiển thị đánh giá.</value></data>
+  <data name="Admin.Dashboard.LowStockDescription" xml:space="preserve"><value>Các sản phẩm đang hoạt động có thể cần nhập thêm hàng.</value></data>
+  <data name="Admin.Dashboard.LowStockEmpty" xml:space="preserve"><value>Hiện không có cảnh báo sắp hết hàng.</value></data>
+  <data name="Admin.Dashboard.LowStockTitle" xml:space="preserve"><value>Theo dõi tồn kho thấp</value></data>
+  <data name="Admin.Dashboard.ManageAccounts" xml:space="preserve"><value>Quản lý tài khoản người dùng</value></data>
+  <data name="Admin.Dashboard.NoOrders" xml:space="preserve"><value>Chưa có đơn hàng nào.</value></data>
+  <data name="Admin.Dashboard.OrdersSummary" xml:space="preserve"><value>{0} đơn hàng đang chờ</value></data>
+  <data name="Admin.Dashboard.QueueSummary" xml:space="preserve"><value>Tổng quan hàng chờ</value></data>
+  <data name="Admin.Dashboard.RecentOrdersDescription" xml:space="preserve"><value>Các đơn hàng mới nhất của khách vừa vào quy trình xử lý.</value></data>
+  <data name="Admin.Dashboard.RecentOrdersTitle" xml:space="preserve"><value>Đơn hàng gần đây</value></data>
+  <data name="Admin.Dashboard.RevenueDescription" xml:space="preserve"><value>VND từ các đơn chưa bị hủy</value></data>
+  <data name="Admin.Dashboard.ReviewsSummary" xml:space="preserve"><value>Đang bị ẩn khỏi storefront</value></data>
+  <data name="Admin.Dashboard.UpdatedAt" xml:space="preserve"><value>Cập nhật {0}</value></data>
+  <data name="Admin.Dashboard.UserSummary" xml:space="preserve"><value>{0} khách hàng, {1} nhân viên, {2} quản trị viên</value></data>
+  <data name="Admin.Dashboard.LeftCount" xml:space="preserve"><value>Còn {0}</value></data>
+  <data name="Admin.Layout.Panel" xml:space="preserve"><value>Bảng quản trị</value></data>
+  <data name="Admin.Layout.TitleSuffix" xml:space="preserve"><value>Quản trị</value></data>
+  <data name="Admin.Nav.Catalog" xml:space="preserve"><value>Danh mục</value></data>
+  <data name="Admin.Nav.Categories" xml:space="preserve"><value>Danh mục sản phẩm</value></data>
+  <data name="Admin.Nav.Dashboard" xml:space="preserve"><value>Tổng quan</value></data>
+  <data name="Admin.Nav.General" xml:space="preserve"><value>Chung</value></data>
+  <data name="Admin.Nav.Orders" xml:space="preserve"><value>Đơn hàng</value></data>
+  <data name="Admin.Nav.Overview" xml:space="preserve"><value>Tổng quan</value></data>
+  <data name="Admin.Nav.Products" xml:space="preserve"><value>Sản phẩm</value></data>
+  <data name="Admin.Nav.Reviews" xml:space="preserve"><value>Đánh giá</value></data>
+  <data name="Admin.Nav.Settings" xml:space="preserve"><value>Cài đặt</value></data>
+  <data name="Admin.Nav.Users" xml:space="preserve"><value>Người dùng</value></data>
+  <data name="Admin.Nav.ViewStore" xml:space="preserve"><value>Xem cửa hàng</value></data>
+  <data name="Admin.Products.CreateDescription" xml:space="preserve"><value>Thêm sản phẩm mới với giá, tồn kho, danh mục và hình ảnh.</value></data>
+  <data name="Admin.Products.DeleteConfirm" xml:space="preserve"><value>Xóa sản phẩm này và toàn bộ hình ảnh đã tải lên?</value></data>
+  <data name="Admin.Products.Description" xml:space="preserve"><value>Tạo sản phẩm, gán danh mục, tải ảnh và kiểm soát hiển thị.</value></data>
+  <data name="Admin.Products.Empty" xml:space="preserve"><value>Chưa có sản phẩm nào được tạo.</value></data>
+  <data name="Admin.Products.NoImage" xml:space="preserve"><value>Không ảnh</value></data>
+  <data name="Admin.Products.NoSku" xml:space="preserve"><value>Không SKU</value></data>
+  <data name="Admin.Products.UploadHint" xml:space="preserve"><value>Ảnh đầu tiên được tải lên sẽ là ảnh chính.</value></data>
+  <data name="Admin.Products.ChooseCategory" xml:space="preserve"><value>Chọn danh mục</value></data>
+  <data name="Admin.Role.Admin" xml:space="preserve"><value>Quản trị viên</value></data>
+  <data name="Admin.Role.Employee" xml:space="preserve"><value>Nhân viên</value></data>
+  <data name="Admin.Status.Active" xml:space="preserve"><value>Đang hoạt động</value></data>
+  <data name="Admin.Status.EmailConfirmed" xml:space="preserve"><value>Email đã xác nhận</value></data>
+  <data name="Admin.Status.EmailPending" xml:space="preserve"><value>Email chờ xác nhận</value></data>
+  <data name="Admin.Status.Inactive" xml:space="preserve"><value>Ngừng hoạt động</value></data>
+  <data name="Admin.Status.Locked" xml:space="preserve"><value>Đã khóa</value></data>
+  <data name="Admin.Users.AllRoles" xml:space="preserve"><value>Tất cả vai trò</value></data>
+  <data name="Admin.Users.Description" xml:space="preserve"><value>Tìm kiếm tài khoản khách hàng và nhân viên, xem mức độ hoạt động đơn hàng và điều chỉnh quyền truy cập an toàn.</value></data>
+  <data name="Admin.Users.Empty" xml:space="preserve"><value>Không có người dùng nào khớp với bộ lọc hiện tại.</value></data>
+  <data name="Admin.Users.SearchPlaceholder" xml:space="preserve"><value>Tìm theo tên, email hoặc số điện thoại</value></data>
+  <data name="Auth.AlreadyHaveAccount" xml:space="preserve"><value>Đã có tài khoản?</value></data>
+  <data name="Auth.CreateAccountTitle" xml:space="preserve"><value>Tạo tài khoản của bạn</value></data>
+  <data name="Auth.ForgotPassword" xml:space="preserve"><value>Quên mật khẩu?</value></data>
+  <data name="Auth.JoinAndStartShopping" xml:space="preserve"><value>Tham gia và bắt đầu mua sắm</value></data>
+  <data name="Auth.LoginTitle" xml:space="preserve"><value>Chào mừng quay lại</value></data>
+  <data name="Auth.LoginSubtitle" xml:space="preserve"><value>Đăng nhập vào tài khoản của bạn</value></data>
+  <data name="Auth.NoAccount" xml:space="preserve"><value>Chưa có tài khoản?</value></data>
+  <data name="Cart.AvailableStock" xml:space="preserve"><value>Tồn kho khả dụng: {0}</value></data>
+  <data name="Cart.EmptyDescription" xml:space="preserve"><value>Hãy thêm vài sản phẩm trước. Giỏ hàng hiện lưu theo phiên nên vẫn giữ nguyên khi bạn tiếp tục duyệt.</value></data>
+  <data name="Cart.EmptyTitle" xml:space="preserve"><value>Giỏ hàng của bạn đang trống</value></data>
+  <data name="Cart.EstimatedTotal" xml:space="preserve"><value>Tổng ước tính</value></data>
+  <data name="Cart.ItemsReady" xml:space="preserve"><value>{0} sản phẩm sẵn sàng để thanh toán.</value></data>
+  <data name="Cart.LineTotal" xml:space="preserve"><value>Tổng dòng</value></data>
+  <data name="Cart.OrderSummary" xml:space="preserve"><value>Tóm tắt đơn hàng</value></data>
+  <data name="Cart.SignInRequiredCheckout" xml:space="preserve"><value>Cần đăng nhập để thanh toán nhằm gắn đơn hàng với tài khoản và hiển thị trong lịch sử đơn hàng sau này.</value></data>
+  <data name="Cart.Title" xml:space="preserve"><value>Giỏ hàng của bạn</value></data>
+  <data name="Cart.UnitPrice" xml:space="preserve"><value>Đơn giá</value></data>
+  <data name="Checkout.Description" xml:space="preserve"><value>Xác nhận thông tin giao hàng và đặt đơn từ giỏ hàng hiện tại của bạn.</value></data>
+  <data name="Checkout.Field.FullName" xml:space="preserve"><value>Họ và tên</value></data>
+  <data name="Checkout.Field.PhoneNumber" xml:space="preserve"><value>Số điện thoại</value></data>
+  <data name="Checkout.Field.Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Checkout.Field.Address" xml:space="preserve"><value>Địa chỉ</value></data>
+  <data name="Checkout.Field.Ward" xml:space="preserve"><value>Xã / Phường</value></data>
+  <data name="Checkout.Field.Province" xml:space="preserve"><value>Tỉnh / Thành phố</value></data>
+  <data name="Checkout.Field.Notes" xml:space="preserve"><value>Ghi chú</value></data>
+  <data name="Checkout.Field.PromoCode" xml:space="preserve"><value>Mã khuyến mãi</value></data>
+  <data name="Checkout.Field.PaymentMethod" xml:space="preserve"><value>Phương thức thanh toán</value></data>
+  <data name="Checkout.FreeShippingThreshold" xml:space="preserve"><value>Được miễn phí vận chuyển từ {0} {1} sau khi giảm giá.</value></data>
+  <data name="Checkout.ReuseAddress" xml:space="preserve"><value>Dùng lại địa chỉ này cho những lần thanh toán sau</value></data>
+  <data name="Checkout.ShippingInformation" xml:space="preserve"><value>Thông tin giao hàng</value></data>
+  <data name="Checkout.ShippingInformationDescription" xml:space="preserve"><value>Những thông tin này sẽ được lưu cùng ảnh chụp đơn hàng để phục vụ giao hàng và đối soát thanh toán.</value></data>
+  <data name="Checkout.SubmitValidationNote" xml:space="preserve"><value>Tồn kho, thanh toán và khả dụng sẽ được kiểm tra lại khi bạn gửi biểu mẫu để đơn hàng luôn dùng trạng thái danh mục mới nhất.</value></data>
+  <data name="Checkout.Title" xml:space="preserve"><value>Thanh toán</value></data>
+  <data name="Label.Actions" xml:space="preserve"><value>Thao tác</value></data>
+  <data name="Label.Category" xml:space="preserve"><value>Danh mục</value></data>
+  <data name="Label.CommentOptional" xml:space="preserve"><value>Bình luận (không bắt buộc)</value></data>
+  <data name="Label.Customer" xml:space="preserve"><value>Khách hàng</value></data>
+  <data name="Label.Description" xml:space="preserve"><value>Mô tả</value></data>
+  <data name="Label.Each" xml:space="preserve"><value>mỗi</value></data>
+  <data name="Label.Images" xml:space="preserve"><value>Hình ảnh</value></data>
+  <data name="Label.Items" xml:space="preserve"><value>Sản phẩm</value></data>
+  <data name="Label.Joined" xml:space="preserve"><value>Ngày tham gia</value></data>
+  <data name="Label.Name" xml:space="preserve"><value>Tên</value></data>
+  <data name="Label.Order" xml:space="preserve"><value>Đơn hàng</value></data>
+  <data name="Label.Orders" xml:space="preserve"><value>Đơn hàng</value></data>
+  <data name="Label.Payment" xml:space="preserve"><value>Thanh toán</value></data>
+  <data name="Label.Placed" xml:space="preserve"><value>Ngày đặt</value></data>
+  <data name="Label.Price" xml:space="preserve"><value>Giá</value></data>
+  <data name="Label.Product" xml:space="preserve"><value>Sản phẩm</value></data>
+  <data name="Label.Products" xml:space="preserve"><value>Sản phẩm</value></data>
+  <data name="Label.Quantity" xml:space="preserve"><value>Số lượng</value></data>
+  <data name="Label.Qty" xml:space="preserve"><value>SL: {0}</value></data>
+  <data name="Label.Revenue" xml:space="preserve"><value>Doanh thu</value></data>
+  <data name="Label.Reviews" xml:space="preserve"><value>Đánh giá</value></data>
+  <data name="Label.Role" xml:space="preserve"><value>Vai trò</value></data>
+  <data name="Label.Sku" xml:space="preserve"><value>SKU: {0}</value></data>
+  <data name="Label.Status" xml:space="preserve"><value>Trạng thái</value></data>
+  <data name="Label.Stock" xml:space="preserve"><value>Tồn kho</value></data>
+  <data name="Label.Subtotal" xml:space="preserve"><value>Tạm tính</value></data>
+  <data name="Label.Total" xml:space="preserve"><value>Tổng cộng</value></data>
+  <data name="Label.User" xml:space="preserve"><value>Người dùng</value></data>
+  <data name="Message.Admin.CategoryCreated" xml:space="preserve"><value>Tạo danh mục thành công.</value></data>
+  <data name="Message.Admin.CategoryDeleted" xml:space="preserve"><value>Xóa danh mục thành công.</value></data>
+  <data name="Message.Admin.CategoryUpdated" xml:space="preserve"><value>Cập nhật danh mục thành công.</value></data>
+  <data name="Message.Admin.OrderUpdated" xml:space="preserve"><value>Cập nhật trạng thái và theo dõi đơn hàng thành công.</value></data>
+  <data name="Message.Admin.ProductCreated" xml:space="preserve"><value>Tạo sản phẩm thành công.</value></data>
+  <data name="Message.Admin.ProductDeleted" xml:space="preserve"><value>Xóa sản phẩm thành công.</value></data>
+  <data name="Message.Admin.ProductUpdated" xml:space="preserve"><value>Cập nhật sản phẩm thành công.</value></data>
+  <data name="Message.Admin.ReviewDeleted" xml:space="preserve"><value>Xóa đánh giá thành công.</value></data>
+  <data name="Message.Admin.ReviewUpdated" xml:space="preserve"><value>Cập nhật hiển thị và phản hồi đánh giá thành công.</value></data>
+  <data name="Message.Admin.SettingsUpdated" xml:space="preserve"><value>Cập nhật cài đặt thành công.</value></data>
+  <data name="Message.Admin.UserUpdated" xml:space="preserve"><value>Cập nhật tài khoản người dùng thành công.</value></data>
+  <data name="Message.Auth.EmailInUse" xml:space="preserve"><value>Email đã được sử dụng.</value></data>
+  <data name="Message.Auth.InvalidLoginAttempt" xml:space="preserve"><value>Thông tin đăng nhập không hợp lệ.</value></data>
+  <data name="Message.Cart.Added" xml:space="preserve"><value>Đã thêm sản phẩm vào giỏ hàng.</value></data>
+  <data name="Message.Cart.Empty" xml:space="preserve"><value>Giỏ hàng của bạn đang trống.</value></data>
+  <data name="Message.Cart.InvalidQuantity" xml:space="preserve"><value>Vui lòng chọn số lượng hợp lệ.</value></data>
+  <data name="Message.Cart.Removed" xml:space="preserve"><value>Đã xóa sản phẩm khỏi giỏ hàng.</value></data>
+  <data name="Message.Cart.Updated" xml:space="preserve"><value>Cập nhật giỏ hàng thành công.</value></data>
+  <data name="Message.Order.Cancelled" xml:space="preserve"><value>Đơn hàng của bạn đã được hủy và tồn kho đã được hoàn lại.</value></data>
+  <data name="Message.Order.Placed" xml:space="preserve"><value>Đơn hàng của bạn đã được đặt thành công.</value></data>
+  <data name="Message.Review.InvalidRating" xml:space="preserve"><value>Vui lòng chọn số sao đánh giá (1-5).</value></data>
+  <data name="Message.Review.Thanks" xml:space="preserve"><value>Cảm ơn bạn đã đánh giá. Đánh giá đã được hiển thị ngay.</value></data>
+  <data name="Message.Wishlist.Removed" xml:space="preserve"><value>Đã xóa sản phẩm khỏi danh sách yêu thích.</value></data>
+  <data name="Message.Wishlist.SaveFailed" xml:space="preserve"><value>Không thể lưu sản phẩm này vào danh sách yêu thích.</value></data>
+  <data name="Message.Wishlist.Saved" xml:space="preserve"><value>Đã lưu sản phẩm vào danh sách yêu thích.</value></data>
+  <data name="Payment.CashOnDelivery" xml:space="preserve"><value>Thanh toán khi nhận hàng</value></data>
+  <data name="Payment.CashOnDeliveryDescription" xml:space="preserve"><value>Khách thanh toán khi đơn giao tới. Trạng thái thanh toán sẽ chờ cho đến khi đơn hoàn tất.</value></data>
+  <data name="Payment.DemoGateway" xml:space="preserve"><value>Cổng DemoPay</value></data>
+  <data name="Payment.DemoGatewayDescription" xml:space="preserve"><value>Tích hợp thanh toán trực tuyến mô phỏng cho phát triển và kiểm thử luồng. Đơn hàng sẽ được đánh dấu đã thanh toán ngay.</value></data>
+  <data name="Payment.Guidance" xml:space="preserve"><value>Hướng dẫn thanh toán</value></data>
+  <data name="Product.AllProducts" xml:space="preserve"><value>Tất cả sản phẩm</value></data>
+  <data name="Product.Filter.AllCategories" xml:space="preserve"><value>Tất cả danh mục</value></data>
+  <data name="Product.Filter.InStockOnly" xml:space="preserve"><value>Chỉ còn hàng</value></data>
+  <data name="Product.Filter.MaxPrice" xml:space="preserve"><value>Giá tối đa</value></data>
+  <data name="Product.Filter.MinPrice" xml:space="preserve"><value>Giá tối thiểu</value></data>
+  <data name="Product.Filter.NameAZ" xml:space="preserve"><value>Tên: A-Z</value></data>
+  <data name="Product.Filter.Newest" xml:space="preserve"><value>Mới nhất</value></data>
+  <data name="Product.Filter.PriceHighLow" xml:space="preserve"><value>Giá: Cao đến thấp</value></data>
+  <data name="Product.Filter.PriceLowHigh" xml:space="preserve"><value>Giá: Thấp đến cao</value></data>
+  <data name="Product.Filter.PriceWindow" xml:space="preserve"><value>Khoảng giá: {0} - {1} VND</value></data>
+  <data name="Product.Filter.Search" xml:space="preserve"><value>Tìm kiếm</value></data>
+  <data name="Product.Filter.SearchPlaceholder" xml:space="preserve"><value>Tìm sản phẩm...</value></data>
+  <data name="Product.Filter.SortBy" xml:space="preserve"><value>Sắp xếp theo</value></data>
+  <data name="Product.HoverToZoom" xml:space="preserve"><value>Di chuột để phóng to</value></data>
+  <data name="Product.InStock" xml:space="preserve"><value>Còn hàng</value></data>
+  <data name="Product.ItemsFound" xml:space="preserve"><value>Tìm thấy {0} sản phẩm</value></data>
+  <data name="Product.MoreFrom" xml:space="preserve"><value>Thêm từ</value></data>
+  <data name="Product.NoneFoundDescription" xml:space="preserve"><value>Hãy điều chỉnh từ khóa hoặc bộ lọc để tìm sản phẩm phù hợp.</value></data>
+  <data name="Product.NoneFoundTitle" xml:space="preserve"><value>Không tìm thấy sản phẩm</value></data>
+  <data name="Product.OnlyLeft" xml:space="preserve"><value>Chỉ còn {0}</value></data>
+  <data name="Product.OutOfStock" xml:space="preserve"><value>Hết hàng</value></data>
+  <data name="Product.RelatedProducts" xml:space="preserve"><value>Sản phẩm liên quan</value></data>
+  <data name="Product.ResultsFor" xml:space="preserve"><value>Kết quả cho "{0}"</value></data>
+  <data name="Product.SignInWishlistHint" xml:space="preserve"><value>Đăng nhập để lưu sản phẩm này vào yêu thích và theo dõi các lần mua sau.</value></data>
+  <data name="Product.NoDescription" xml:space="preserve"><value>Chưa có mô tả cho sản phẩm này.</value></data>
+  <data name="Product.Availability" xml:space="preserve"><value>Tình trạng</value></data>
+  <data name="Product.StockCount" xml:space="preserve"><value>Còn {0} sản phẩm</value></data>
+  <data name="Product.ViewAllInCategory" xml:space="preserve"><value>Xem tất cả trong danh mục</value></data>
+  <data name="Review.AlreadyReviewed" xml:space="preserve"><value>Bạn đã đánh giá sản phẩm này. Cảm ơn phản hồi của bạn!</value></data>
+  <data name="Review.AverageOutOf" xml:space="preserve"><value>{0} trên 5</value></data>
+  <data name="Review.BasedOnCount" xml:space="preserve"><value>Dựa trên {0} đánh giá</value></data>
+  <data name="Review.BeFirst" xml:space="preserve"><value>Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá sản phẩm này!</value></data>
+  <data name="Review.BeFirstShort" xml:space="preserve"><value>Hãy là người đầu tiên chia sẻ trải nghiệm!</value></data>
+  <data name="Review.CommentPlaceholder" xml:space="preserve"><value>Chia sẻ trải nghiệm của bạn với sản phẩm này...</value></data>
+  <data name="Review.CustomerReviews" xml:space="preserve"><value>Đánh giá từ khách hàng</value></data>
+  <data name="Review.FirstReview" xml:space="preserve"><value>Đánh giá đầu tiên</value></data>
+  <data name="Review.HiddenByModeration" xml:space="preserve"><value>Đánh giá của bạn hiện đang bị ẩn bởi hệ thống kiểm duyệt và chưa hiển thị công khai.</value></data>
+  <data name="Review.LoginPromptSuffix" xml:space="preserve"><value>để viết đánh giá.</value></data>
+  <data name="Review.NoneYetShort" xml:space="preserve"><value>Chưa có đánh giá</value></data>
+  <data name="Review.PendingApproval" xml:space="preserve"><value>Đánh giá của bạn đã được gửi và đang chờ quản trị viên phê duyệt.</value></data>
+  <data name="Review.RatingOption5" xml:space="preserve"><value>5 - Xuất sắc</value></data>
+  <data name="Review.RatingOption4" xml:space="preserve"><value>4 - Rất tốt</value></data>
+  <data name="Review.RatingOption3" xml:space="preserve"><value>3 - Trung bình</value></data>
+  <data name="Review.RatingOption2" xml:space="preserve"><value>2 - Kém</value></data>
+  <data name="Review.RatingOption1" xml:space="preserve"><value>1 - Rất tệ</value></data>
+  <data name="Review.ReviewCount" xml:space="preserve"><value>({0} đánh giá)</value></data>
+  <data name="Review.RepliedOn" xml:space="preserve"><value>Phản hồi lúc {0}</value></data>
+  <data name="Review.StoreReply" xml:space="preserve"><value>Phản hồi từ cửa hàng</value></data>
+  <data name="Review.UnknownUser" xml:space="preserve"><value>Không rõ</value></data>
+  <data name="Review.VerifiedPurchaseOnly" xml:space="preserve"><value>Chỉ những lượt mua đã xác minh mới có thể gửi đánh giá.</value></data>
+  <data name="Review.WantToShare" xml:space="preserve"><value>Bạn muốn chia sẻ cảm nhận?</value></data>
+  <data name="Review.WriteTitle" xml:space="preserve"><value>Viết đánh giá</value></data>
+  <data name="Review.YourRating" xml:space="preserve"><value>Đánh giá của bạn</value></data>
+  <data name="Summary.Discount" xml:space="preserve"><value>Giảm giá</value></data>
+  <data name="Summary.Payment" xml:space="preserve"><value>Thanh toán</value></data>
+  <data name="Summary.PromoApplied" xml:space="preserve"><value>Đã áp dụng mã {0}</value></data>
+  <data name="Summary.Shipping" xml:space="preserve"><value>Vận chuyển</value></data>
+  <data name="Summary.Tax" xml:space="preserve"><value>Thuế ({0}%)</value></data>
+  <data name="Admin.Settings.Title" xml:space="preserve"><value>Cài đặt cửa hàng</value></data>
+  <data name="Admin.Settings.Description" xml:space="preserve"><value>Quản lý nhận diện thương hiệu, banner trang chủ và nội dung khuyến mãi tại một nơi.</value></data>
+  <data name="Admin.Settings.BrandingTitle" xml:space="preserve"><value>Nhận diện thương hiệu</value></data>
+  <data name="Admin.Settings.BrandingDescription" xml:space="preserve"><value>Cập nhật thông tin cửa hàng hiển thị trong layout dùng chung và footer.</value></data>
+  <data name="Admin.Settings.Field.StoreName" xml:space="preserve"><value>Tên cửa hàng</value></data>
+  <data name="Admin.Settings.Field.SupportEmail" xml:space="preserve"><value>Email hỗ trợ</value></data>
+  <data name="Admin.Settings.LogoAltCurrent" xml:space="preserve"><value>Logo hiện tại</value></data>
+  <data name="Admin.Settings.NoLogo" xml:space="preserve"><value>Chưa tải logo lên</value></data>
+  <data name="Admin.Settings.Field.LogoImageFile" xml:space="preserve"><value>Tải logo lên</value></data>
+  <data name="Admin.Settings.LogoHint" xml:space="preserve"><value>Cho phép: .jpg, .jpeg, .png, .webp, .svg. Kích thước tối đa 2 MB.</value></data>
+  <data name="Admin.Settings.RemoveLogo" xml:space="preserve"><value>Xóa logo hiện tại và dùng lại biểu tượng mặc định</value></data>
+  <data name="Admin.Settings.HeroSectionTitle" xml:space="preserve"><value>Hero trang chủ</value></data>
+  <data name="Admin.Settings.HeroSectionDescription" xml:space="preserve"><value>Điều chỉnh nội dung banner hero chính và các nút kêu gọi hành động.</value></data>
+  <data name="Admin.Settings.Field.HeroBadgeText" xml:space="preserve"><value>Nội dung badge hero</value></data>
+  <data name="Admin.Settings.Field.HeroTitle" xml:space="preserve"><value>Tiêu đề hero</value></data>
+  <data name="Admin.Settings.Field.HeroSubtitle" xml:space="preserve"><value>Mô tả hero</value></data>
+  <data name="Admin.Settings.Field.HeroPrimaryButtonText" xml:space="preserve"><value>Chữ nút chính</value></data>
+  <data name="Admin.Settings.Field.HeroPrimaryButtonUrl" xml:space="preserve"><value>URL nút chính</value></data>
+  <data name="Admin.Settings.Field.HeroSecondaryButtonText" xml:space="preserve"><value>Chữ nút phụ</value></data>
+  <data name="Admin.Settings.Field.HeroSecondaryButtonUrl" xml:space="preserve"><value>URL nút phụ</value></data>
+  <data name="Admin.Settings.PromoSectionTitle" xml:space="preserve"><value>Banner khuyến mãi và giảm giá</value></data>
+  <data name="Admin.Settings.PromoSectionDescription" xml:space="preserve"><value>Quản lý nội dung khuyến mãi trên trang chủ, mã giảm giá và phần trăm ưu đãi.</value></data>
+  <data name="Admin.Settings.PromoToggle" xml:space="preserve"><value>Hiển thị banner khuyến mãi trên trang chủ</value></data>
+  <data name="Admin.Settings.Field.PromoTitle" xml:space="preserve"><value>Tiêu đề khuyến mãi</value></data>
+  <data name="Admin.Settings.Field.PromoButtonText" xml:space="preserve"><value>Chữ nút khuyến mãi</value></data>
+  <data name="Admin.Settings.Field.PromoSubtitle" xml:space="preserve"><value>Mô tả khuyến mãi</value></data>
+  <data name="Admin.Settings.Field.PromoButtonUrl" xml:space="preserve"><value>URL nút khuyến mãi</value></data>
+  <data name="Admin.Settings.Field.PromoCode" xml:space="preserve"><value>Mã khuyến mãi</value></data>
+  <data name="Admin.Settings.Field.PromoDiscountPercentage" xml:space="preserve"><value>Phần trăm giảm giá</value></data>
+  <data name="Admin.Settings.FulfillmentSectionTitle" xml:space="preserve"><value>Vận hành giao hàng và thanh toán</value></data>
+  <data name="Admin.Settings.FulfillmentSectionDescription" xml:space="preserve"><value>Cấu hình phí ship, thuế, tiền tệ và hướng dẫn checkout được dùng bởi luồng đơn hàng.</value></data>
+  <data name="Admin.Settings.Field.StandardShippingFee" xml:space="preserve"><value>Phí vận chuyển tiêu chuẩn</value></data>
+  <data name="Admin.Settings.Field.FreeShippingThreshold" xml:space="preserve"><value>Ngưỡng miễn phí vận chuyển</value></data>
+  <data name="Admin.Settings.Field.TaxRatePercentage" xml:space="preserve"><value>Thuế suất (%)</value></data>
+  <data name="Admin.Settings.Field.CurrencyCode" xml:space="preserve"><value>Mã tiền tệ</value></data>
+  <data name="Admin.Settings.Field.PaymentInstructions" xml:space="preserve"><value>Hướng dẫn thanh toán</value></data>
+  <data name="Admin.Settings.OperationsSectionTitle" xml:space="preserve"><value>Vận hành và SEO</value></data>
+  <data name="Admin.Settings.OperationsSectionDescription" xml:space="preserve"><value>Giữ thông điệp, gửi mail và ngôn ngữ mặc định đồng bộ với hành vi storefront.</value></data>
+  <data name="Admin.Settings.Field.SmtpHost" xml:space="preserve"><value>Máy chủ SMTP</value></data>
+  <data name="Admin.Settings.Field.SmtpPort" xml:space="preserve"><value>Cổng SMTP</value></data>
+  <data name="Admin.Settings.Field.SmtpUsername" xml:space="preserve"><value>Tên đăng nhập SMTP</value></data>
+  <data name="Admin.Settings.Field.SmtpPassword" xml:space="preserve"><value>Mật khẩu SMTP</value></data>
+  <data name="Admin.Settings.KeepPasswordHint" xml:space="preserve"><value>Để trống nếu muốn giữ nguyên mật khẩu hiện tại.</value></data>
+  <data name="Admin.Settings.Field.SmtpFromEmail" xml:space="preserve"><value>Email người gửi SMTP</value></data>
+  <data name="Admin.Settings.Field.SeoMetaTitle" xml:space="preserve"><value>Tiêu đề SEO</value></data>
+  <data name="Admin.Settings.Field.DefaultCulture" xml:space="preserve"><value>Ngôn ngữ mặc định</value></data>
+  <data name="Admin.Settings.Field.SeoMetaDescription" xml:space="preserve"><value>Mô tả SEO</value></data>
+  <data name="Admin.Settings.SaveButton" xml:space="preserve"><value>Lưu cài đặt</value></data>
+  <data name="Home.ShopByCategory" xml:space="preserve"><value>Mua sắm theo danh mục</value></data>
+  <data name="Home.ShopByCategoryDescription" xml:space="preserve"><value>Duyệt sản phẩm theo những danh mục bạn yêu thích</value></data>
+  <data name="Home.CategoryProductCount" xml:space="preserve"><value>{0} sản phẩm</value></data>
+  <data name="Home.FeaturedProducts" xml:space="preserve"><value>Sản phẩm nổi bật</value></data>
+  <data name="Home.FeaturedProductsDescription" xml:space="preserve"><value>Những sản phẩm mới nhất và được quan tâm nhiều nhất</value></data>
+  <data name="Home.ViewAllProducts" xml:space="preserve"><value>Xem tất cả sản phẩm</value></data>
+  <data name="Home.PromoCodeLabel" xml:space="preserve"><value>Mã:</value></data>
+  <data name="Home.PromoDiscount" xml:space="preserve"><value>Giảm {0}%</value></data>
+  <data name="Order.Index.Description" xml:space="preserve"><value>Xem lại các đơn mua trước đó và mở từng đơn để theo dõi vận chuyển đầy đủ.</value></data>
+  <data name="Order.Index.EmptyTitle" xml:space="preserve"><value>Chưa có đơn hàng nào</value></data>
+  <data name="Order.Index.EmptyDescription" xml:space="preserve"><value>Sau khi hoàn tất thanh toán, các đơn hàng của bạn sẽ xuất hiện ở đây.</value></data>
+  <data name="Order.LookupByCode" xml:space="preserve"><value>Tra cứu bằng mã</value></data>
+  <data name="Order.Reference" xml:space="preserve"><value>Mã tham chiếu #{0}</value></data>
+  <data name="Order.RefundReady" xml:space="preserve"><value>Sẵn sàng hoàn tiền</value></data>
+  <data name="Order.ViewDetails" xml:space="preserve"><value>Xem chi tiết</value></data>
+  <data name="Order.Track" xml:space="preserve"><value>Theo dõi</value></data>
+  <data name="Order.Status.Pending" xml:space="preserve"><value>Chờ xử lý</value></data>
+  <data name="Order.Status.Processing" xml:space="preserve"><value>Đang xử lý</value></data>
+  <data name="Order.Status.Completed" xml:space="preserve"><value>Hoàn tất</value></data>
+  <data name="Order.Status.Cancelled" xml:space="preserve"><value>Đã hủy</value></data>
+  <data name="Order.PaymentStatus.Pending" xml:space="preserve"><value>Chờ thanh toán</value></data>
+  <data name="Order.PaymentStatus.Authorized" xml:space="preserve"><value>Đã ủy quyền</value></data>
+  <data name="Order.PaymentStatus.Paid" xml:space="preserve"><value>Đã thanh toán</value></data>
+  <data name="Order.PaymentStatus.Failed" xml:space="preserve"><value>Thất bại</value></data>
+  <data name="Order.PaymentStatus.Refunded" xml:space="preserve"><value>Đã hoàn tiền</value></data>
+  <data name="Order.Lookup.Title" xml:space="preserve"><value>Tra cứu đơn hàng</value></data>
+  <data name="Order.Lookup.Badge" xml:space="preserve"><value>Truy cập đơn hàng</value></data>
+  <data name="Order.Lookup.HeroTitle" xml:space="preserve"><value>Tra cứu đơn hàng bằng mã</value></data>
+  <data name="Order.Lookup.Description" xml:space="preserve"><value>Dùng mã đơn hàng trong email xác nhận để mở lại đơn trên bất kỳ thiết bị nào. Người dùng đã đăng nhập cũng có thể dùng trang này cho các đơn trong tài khoản.</value></data>
+  <data name="Order.Lookup.OrderNumberLabel" xml:space="preserve"><value>Mã đơn hàng</value></data>
+  <data name="Order.Lookup.OrderNumberPlaceholder" xml:space="preserve"><value>ORD-20260330153000-1234</value></data>
+  <data name="Order.Lookup.EmailLabel" xml:space="preserve"><value>Email</value></data>
+  <data name="Order.Lookup.EmailPlaceholder" xml:space="preserve"><value>customer@example.com</value></data>
+  <data name="Order.Lookup.AuthHint" xml:space="preserve"><value>Không bắt buộc với đơn thuộc tài khoản đã đăng nhập. Hãy nhập nếu bạn muốn mở lại một đơn guest.</value></data>
+  <data name="Order.Lookup.GuestHint" xml:space="preserve"><value>Bắt buộc với đơn guest để hệ thống xác minh mã đơn thuộc về địa chỉ email này.</value></data>
+  <data name="Order.Lookup.Submit" xml:space="preserve"><value>Tìm đơn hàng</value></data>
+  <data name="Order.Lookup.BackToOrders" xml:space="preserve"><value>Quay lại đơn hàng của tôi</value></data>
+  <data name="Order.Tracking.Title" xml:space="preserve"><value>Theo dõi đơn hàng</value></data>
+  <data name="Order.Tracking.Header" xml:space="preserve"><value>Theo dõi vận chuyển</value></data>
+  <data name="Order.Tracking.PlacedFor" xml:space="preserve"><value>Đặt lúc {0} cho {1}.</value></data>
+  <data name="Order.BackToConfirmation" xml:space="preserve"><value>Quay lại xác nhận đơn</value></data>
+  <data name="Order.BackToOrder" xml:space="preserve"><value>Quay lại đơn hàng</value></data>
+  <data name="Order.Tracking.StepPlaced" xml:space="preserve"><value>Đã đặt hàng</value></data>
+  <data name="Order.Tracking.StepInProgress" xml:space="preserve"><value>Đang vận chuyển</value></data>
+  <data name="Order.Tracking.StepDelivered" xml:space="preserve"><value>Đã giao</value></data>
+  <data name="Order.Tracking.WaitingDispatch" xml:space="preserve"><value>Đang chờ xuất kho</value></data>
+  <data name="Order.Tracking.PendingCompletion" xml:space="preserve"><value>Đang chờ hoàn tất</value></data>
+  <data name="Order.ShipmentSummary" xml:space="preserve"><value>Tóm tắt vận chuyển</value></data>
+  <data name="Order.CurrentStatus" xml:space="preserve"><value>Trạng thái hiện tại</value></data>
+  <data name="Order.Destination" xml:space="preserve"><value>Điểm đến</value></data>
+  <data name="Order.Carrier" xml:space="preserve"><value>Đơn vị vận chuyển</value></data>
+  <data name="Order.AwaitingAssignment" xml:space="preserve"><value>Đang chờ gán đơn vị</value></data>
+  <data name="Order.TrackingNumber" xml:space="preserve"><value>Mã vận đơn</value></data>
+  <data name="Order.NotAvailableYet" xml:space="preserve"><value>Chưa có</value></data>
+  <data name="Order.EstimatedDelivery" xml:space="preserve"><value>Dự kiến giao hàng</value></data>
+  <data name="Order.Pending" xml:space="preserve"><value>Đang chờ</value></data>
+  <data name="Order.DeliveredAt" xml:space="preserve"><value>Đã giao lúc</value></data>
+  <data name="Order.NotDeliveredYet" xml:space="preserve"><value>Chưa giao</value></data>
+  <data name="Order.OpenCarrierTracking" xml:space="preserve"><value>Mở trang theo dõi của hãng vận chuyển</value></data>
+  <data name="Order.PaymentSnapshot" xml:space="preserve"><value>Tóm tắt thanh toán</value></data>
+  <data name="Order.Method" xml:space="preserve"><value>Phương thức</value></data>
+  <data name="Order.Provider" xml:space="preserve"><value>Nhà cung cấp</value></data>
+  <data name="Order.TransactionReference" xml:space="preserve"><value>Mã tham chiếu giao dịch</value></data>
+  <data name="Order.Details.Title" xml:space="preserve"><value>Chi tiết đơn hàng</value></data>
+  <data name="Order.Details.Header" xml:space="preserve"><value>Chi tiết đơn hàng</value></data>
+  <data name="Order.Details.PlacedOn" xml:space="preserve"><value>Đặt lúc {0}.</value></data>
+  <data name="Order.BackToOrders" xml:space="preserve"><value>Quay lại danh sách đơn</value></data>
+  <data name="Order.BuyAgain" xml:space="preserve"><value>Mua lại</value></data>
+  <data name="Order.Updated" xml:space="preserve"><value>Cập nhật</value></data>
+  <data name="Order.OrderItems" xml:space="preserve"><value>Sản phẩm trong đơn</value></data>
+  <data name="Order.ItemCount" xml:space="preserve"><value>{0} sản phẩm</value></data>
+  <data name="Product.Sku" xml:space="preserve"><value>SKU: {0}</value></data>
+  <data name="Order.PriceQuantity" xml:space="preserve"><value>{0} VND x {1}</value></data>
+  <data name="Order.ShipmentTracking" xml:space="preserve"><value>Theo dõi vận chuyển</value></data>
+  <data name="Order.ShippingAddress" xml:space="preserve"><value>Địa chỉ giao hàng</value></data>
+  <data name="Order.WorkflowAudit" xml:space="preserve"><value>Lịch sử luồng xử lý</value></data>
+  <data name="Order.NoWorkflowEntries" xml:space="preserve"><value>Chưa có bản ghi luồng xử lý nào.</value></data>
+  <data name="Order.CancelOrder" xml:space="preserve"><value>Hủy đơn hàng</value></data>
+  <data name="Order.CancelReasonPlaceholder" xml:space="preserve"><value>Lý do hủy đơn (không bắt buộc)</value></data>
+  <data name="Order.CancelThisOrder" xml:space="preserve"><value>Hủy đơn này</value></data>
+  <data name="Order.DeliveryNotes" xml:space="preserve"><value>Ghi chú giao hàng</value></data>
+  <data name="Order.TrackShipment" xml:space="preserve"><value>Theo dõi vận chuyển</value></data>
+  <data name="Order.Confirmation.Title" xml:space="preserve"><value>Xác nhận đơn hàng</value></data>
+  <data name="Order.Confirmation.HeroTitle" xml:space="preserve"><value>Cảm ơn bạn đã đặt hàng!</value></data>
+  <data name="Order.Confirmation.HeroDescription" xml:space="preserve"><value>Đơn hàng {0} của bạn đã được tạo thành công và đang được xử lý.</value></data>
+  <data name="Order.Confirmation.HeroEmailHint" xml:space="preserve"><value>Nếu hệ thống đã cấu hình gửi email storefront, mã đơn này cũng đã được gửi tới hộp thư của bạn để có thể tra cứu lại sau trên bất kỳ thiết bị nào.</value></data>
+  <data name="Order.TrackOrder" xml:space="preserve"><value>Theo dõi đơn hàng</value></data>
+  <data name="Order.SaveLookupLater" xml:space="preserve"><value>Lưu / Tra cứu sau</value></data>
+  <data name="Order.OrderStatus" xml:space="preserve"><value>Trạng thái đơn</value></data>
+  <data name="Order.OrderNumberShort" xml:space="preserve"><value>Mã đơn</value></data>
+  <data name="Order.QuickActions" xml:space="preserve"><value>Thao tác nhanh</value></data>
+  <data name="Order.RefundReadyTitle" xml:space="preserve"><value>Đơn chờ xem xét hoàn tiền</value></data>
+  <data name="Order.RefundReadyDescription" xml:space="preserve"><value>Đơn hàng này đã được đánh dấu để xem xét hoàn tiền.</value></data>
+  <data name="Order.RefundReadyDescriptionWithDate" xml:space="preserve"><value>Đơn hàng này đã được đánh dấu để xem xét hoàn tiền vào {0}.</value></data>
+  <data name="Order.TrackingSnapshot" xml:space="preserve"><value>Tóm tắt theo dõi</value></data>
+  <data name="Order.BrowseMoreProducts" xml:space="preserve"><value>Xem thêm sản phẩm</value></data>
+  <data name="Order.BackToHomepage" xml:space="preserve"><value>Quay lại trang chủ</value></data>
+  <data name="Order.Admin.Details.Title" xml:space="preserve"><value>Quản lý đơn hàng</value></data>
+  <data name="Order.Admin.Header" xml:space="preserve"><value>Quản lý đơn hàng</value></data>
+  <data name="Order.Admin.PlacedBy" xml:space="preserve"><value>Khách hàng {0} • đặt lúc {1}</value></data>
+  <data name="Order.LastUpdate" xml:space="preserve"><value>Cập nhật gần nhất</value></data>
+  <data name="Order.Admin.TrackingUrl" xml:space="preserve"><value>Đường dẫn theo dõi</value></data>
+  <data name="Order.WorkflowNote" xml:space="preserve"><value>Ghi chú luồng xử lý</value></data>
+  <data name="Order.CancellationReason" xml:space="preserve"><value>Lý do hủy</value></data>
+  <data name="Order.Admin.UpdateWorkflow" xml:space="preserve"><value>Cập nhật luồng xử lý đơn</value></data>
+  <data name="Order.AuthorizedAt" xml:space="preserve"><value>Ủy quyền lúc</value></data>
+  <data name="Order.PaidAt" xml:space="preserve"><value>Thanh toán lúc</value></data>
+  <data name="Order.ShippedAt" xml:space="preserve"><value>Giao cho đơn vị vận chuyển lúc</value></data>
+  <data name="Order.Admin.CustomerSnapshot" xml:space="preserve"><value>Tóm tắt khách hàng</value></data>
+  <data name="Order.Customer" xml:space="preserve"><value>Khách hàng</value></data>
+  <data name="Order.UserId" xml:space="preserve"><value>Mã người dùng</value></data>
+  <data name="Order.Admin.ShippingSnapshot" xml:space="preserve"><value>Tóm tắt giao hàng</value></data>
+  <data name="Order.CancelledAt" xml:space="preserve"><value>Hủy lúc</value></data>
+  <data name="Order.CancelledBy" xml:space="preserve"><value>Hủy bởi</value></data>
+  <data name="Order.Reason" xml:space="preserve"><value>Lý do</value></data>
+  <data name="Order.RefundQueue" xml:space="preserve"><value>Hàng đợi hoàn tiền</value></data>
+  <data name="Order.Ready" xml:space="preserve"><value>Sẵn sàng</value></data>
+  <data name="Order.ReadySince" xml:space="preserve"><value>Sẵn sàng từ {0}</value></data>
+  <data name="Order.PriceQuantityDynamic" xml:space="preserve"><value>{0} {1} x {2}</value></data>
+</root>

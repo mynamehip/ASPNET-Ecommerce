@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+  <data name="Nav.Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Nav.Products" xml:space="preserve"><value>Products</value></data>
+  <data name="Nav.Wishlist" xml:space="preserve"><value>Wishlist</value></data>
+  <data name="Nav.MyProfile" xml:space="preserve"><value>My Profile</value></data>
+  <data name="Nav.MyOrders" xml:space="preserve"><value>My Orders</value></data>
+  <data name="Nav.MyAccount" xml:space="preserve"><value>My Account</value></data>
+  <data name="Nav.AdminPanel" xml:space="preserve"><value>Admin Panel</value></data>
+  <data name="Nav.Cart" xml:space="preserve"><value>Cart</value></data>
+  <data name="Nav.OpenCart" xml:space="preserve"><value>Open cart</value></data>
+  <data name="Nav.Login" xml:space="preserve"><value>Login</value></data>
+  <data name="Nav.Register" xml:space="preserve"><value>Register</value></data>
+  <data name="Nav.Logout" xml:space="preserve"><value>Logout</value></data>
+  <data name="Theme.Toggle" xml:space="preserve"><value>Toggle theme</value></data>
+  <data name="Theme.Light" xml:space="preserve"><value>Light</value></data>
+  <data name="Theme.Dark" xml:space="preserve"><value>Dark</value></data>
+  <data name="Language.English" xml:space="preserve"><value>English</value></data>
+  <data name="Language.Vietnamese" xml:space="preserve"><value>Vietnamese</value></data>
+  <data name="Notifications.Title" xml:space="preserve"><value>Live updates</value></data>
+  <data name="Footer.Privacy" xml:space="preserve"><value>Privacy Policy</value></data>
+  <data name="Footer.RightsReserved" xml:space="preserve"><value>All rights reserved.</value></data>
+  <data name="Action.AddToCart" xml:space="preserve"><value>Add to Cart</value></data>
+  <data name="Action.ApplyFilters" xml:space="preserve"><value>Apply Filters</value></data>
+  <data name="Action.Back" xml:space="preserve"><value>Back</value></data>
+  <data name="Action.BackToCart" xml:space="preserve"><value>Back to Cart</value></data>
+  <data name="Action.BrowseProducts" xml:space="preserve"><value>Browse Products</value></data>
+  <data name="Action.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Action.ClearAllFilters" xml:space="preserve"><value>Clear all filters</value></data>
+  <data name="Action.ClearFilters" xml:space="preserve"><value>Clear Filters</value></data>
+  <data name="Action.ConfirmOrder" xml:space="preserve"><value>Confirm Order</value></data>
+  <data name="Action.ContinueShopping" xml:space="preserve"><value>Continue Shopping</value></data>
+  <data name="Action.CreateAccount" xml:space="preserve"><value>Create account</value></data>
+  <data name="Action.CreateCategory" xml:space="preserve"><value>Create category</value></data>
+  <data name="Action.CreateOne" xml:space="preserve"><value>Create one</value></data>
+  <data name="Action.CreateProduct" xml:space="preserve"><value>Create product</value></data>
+  <data name="Action.Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Action.Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Action.Filter" xml:space="preserve"><value>Filter</value></data>
+  <data name="Action.LoginToReview" xml:space="preserve"><value>Sign in</value></data>
+  <data name="Action.Manage" xml:space="preserve"><value>Manage</value></data>
+  <data name="Action.ManageUsers" xml:space="preserve"><value>Manage users</value></data>
+  <data name="Action.OpenOrders" xml:space="preserve"><value>Open orders</value></data>
+  <data name="Action.ProceedToCheckout" xml:space="preserve"><value>Proceed to Checkout</value></data>
+  <data name="Action.Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Action.RemoveFromWishlist" xml:space="preserve"><value>Remove from Wishlist</value></data>
+  <data name="Action.ReviewOrders" xml:space="preserve"><value>Review orders</value></data>
+  <data name="Action.SaveToWishlist" xml:space="preserve"><value>Save to Wishlist</value></data>
+  <data name="Action.SignIn" xml:space="preserve"><value>Sign in</value></data>
+  <data name="Action.SubmitReview" xml:space="preserve"><value>Submit Review</value></data>
+  <data name="Action.Update" xml:space="preserve"><value>Update</value></data>
+  <data name="Action.ViewAll" xml:space="preserve"><value>View all</value></data>
+  <data name="Action.ViewDetails" xml:space="preserve"><value>View Details</value></data>
+  <data name="Admin.Categories.Description" xml:space="preserve"><value>Manage the catalog groups used by products.</value></data>
+  <data name="Admin.Categories.DeleteConfirm" xml:space="preserve"><value>Delete this category?</value></data>
+  <data name="Admin.Categories.Empty" xml:space="preserve"><value>No categories created yet.</value></data>
+  <data name="Admin.Categories.NoDescription" xml:space="preserve"><value>No description</value></data>
+  <data name="Admin.Dashboard.AwaitingModeration" xml:space="preserve"><value>Hidden reviews</value></data>
+  <data name="Admin.Dashboard.CatalogSummary" xml:space="preserve"><value>{0} active products</value></data>
+  <data name="Admin.Dashboard.Description" xml:space="preserve"><value>Monitor operational health across users, catalog, orders, and review visibility.</value></data>
+  <data name="Admin.Dashboard.LowStockDescription" xml:space="preserve"><value>Active products that may need replenishment.</value></data>
+  <data name="Admin.Dashboard.LowStockEmpty" xml:space="preserve"><value>No low-stock alerts right now.</value></data>
+  <data name="Admin.Dashboard.LowStockTitle" xml:space="preserve"><value>Low Stock Watch</value></data>
+  <data name="Admin.Dashboard.ManageAccounts" xml:space="preserve"><value>Manage user accounts</value></data>
+  <data name="Admin.Dashboard.NoOrders" xml:space="preserve"><value>No orders available yet.</value></data>
+  <data name="Admin.Dashboard.OrdersSummary" xml:space="preserve"><value>{0} pending orders</value></data>
+  <data name="Admin.Dashboard.QueueSummary" xml:space="preserve"><value>Queue Summary</value></data>
+  <data name="Admin.Dashboard.RecentOrdersDescription" xml:space="preserve"><value>Newest customer orders entering the workflow.</value></data>
+  <data name="Admin.Dashboard.RecentOrdersTitle" xml:space="preserve"><value>Recent Orders</value></data>
+  <data name="Admin.Dashboard.RevenueDescription" xml:space="preserve"><value>VND from non-cancelled orders</value></data>
+  <data name="Admin.Dashboard.ReviewsSummary" xml:space="preserve"><value>Currently hidden from storefront</value></data>
+  <data name="Admin.Dashboard.UpdatedAt" xml:space="preserve"><value>Updated {0}</value></data>
+  <data name="Admin.Dashboard.UserSummary" xml:space="preserve"><value>{0} customers, {1} employees, {2} admins</value></data>
+  <data name="Admin.Dashboard.LeftCount" xml:space="preserve"><value>{0} left</value></data>
+  <data name="Admin.Layout.Panel" xml:space="preserve"><value>Admin Panel</value></data>
+  <data name="Admin.Layout.TitleSuffix" xml:space="preserve"><value>Admin</value></data>
+  <data name="Admin.Nav.Catalog" xml:space="preserve"><value>Catalog</value></data>
+  <data name="Admin.Nav.Categories" xml:space="preserve"><value>Categories</value></data>
+  <data name="Admin.Nav.Dashboard" xml:space="preserve"><value>Dashboard</value></data>
+  <data name="Admin.Nav.General" xml:space="preserve"><value>General</value></data>
+  <data name="Admin.Nav.Orders" xml:space="preserve"><value>Orders</value></data>
+  <data name="Admin.Nav.Overview" xml:space="preserve"><value>Overview</value></data>
+  <data name="Admin.Nav.Products" xml:space="preserve"><value>Products</value></data>
+  <data name="Admin.Nav.Reviews" xml:space="preserve"><value>Reviews</value></data>
+  <data name="Admin.Nav.Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="Admin.Nav.Users" xml:space="preserve"><value>Users</value></data>
+  <data name="Admin.Nav.ViewStore" xml:space="preserve"><value>View Store</value></data>
+  <data name="Admin.Products.CreateDescription" xml:space="preserve"><value>Add a new catalog item with pricing, stock, category, and images.</value></data>
+  <data name="Admin.Products.DeleteConfirm" xml:space="preserve"><value>Delete this product and all uploaded images?</value></data>
+  <data name="Admin.Products.Description" xml:space="preserve"><value>Create catalog items, assign categories, upload images, and control visibility.</value></data>
+  <data name="Admin.Products.Empty" xml:space="preserve"><value>No products created yet.</value></data>
+  <data name="Admin.Products.NoImage" xml:space="preserve"><value>No img</value></data>
+  <data name="Admin.Products.NoSku" xml:space="preserve"><value>No SKU</value></data>
+  <data name="Admin.Products.UploadHint" xml:space="preserve"><value>The first uploaded image becomes the primary image.</value></data>
+  <data name="Admin.Products.ChooseCategory" xml:space="preserve"><value>Choose category</value></data>
+  <data name="Admin.Role.Admin" xml:space="preserve"><value>Administrator</value></data>
+  <data name="Admin.Role.Employee" xml:space="preserve"><value>Employee</value></data>
+  <data name="Admin.Status.Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Admin.Status.EmailConfirmed" xml:space="preserve"><value>Email confirmed</value></data>
+  <data name="Admin.Status.EmailPending" xml:space="preserve"><value>Email pending</value></data>
+  <data name="Admin.Status.Inactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Admin.Status.Locked" xml:space="preserve"><value>Locked</value></data>
+  <data name="Admin.Users.AllRoles" xml:space="preserve"><value>All roles</value></data>
+  <data name="Admin.Users.Description" xml:space="preserve"><value>Search customer and staff accounts, inspect their order footprint, and adjust access safely.</value></data>
+  <data name="Admin.Users.Empty" xml:space="preserve"><value>No users matched the current filters.</value></data>
+  <data name="Admin.Users.SearchPlaceholder" xml:space="preserve"><value>Search name, email, or phone</value></data>
+  <data name="Auth.AlreadyHaveAccount" xml:space="preserve"><value>Already have an account?</value></data>
+  <data name="Auth.CreateAccountTitle" xml:space="preserve"><value>Create your account</value></data>
+  <data name="Auth.ForgotPassword" xml:space="preserve"><value>Forgot your password?</value></data>
+  <data name="Auth.JoinAndStartShopping" xml:space="preserve"><value>Join us and start shopping</value></data>
+  <data name="Auth.LoginTitle" xml:space="preserve"><value>Welcome back</value></data>
+  <data name="Auth.LoginSubtitle" xml:space="preserve"><value>Sign in to your account</value></data>
+  <data name="Auth.NoAccount" xml:space="preserve"><value>Don't have an account?</value></data>
+  <data name="Cart.AvailableStock" xml:space="preserve"><value>Available stock: {0}</value></data>
+  <data name="Cart.EmptyDescription" xml:space="preserve"><value>Add a few products first. The cart is session-based for now, so it stays available while you continue browsing.</value></data>
+  <data name="Cart.EmptyTitle" xml:space="preserve"><value>Your cart is empty</value></data>
+  <data name="Cart.EstimatedTotal" xml:space="preserve"><value>Estimated total</value></data>
+  <data name="Cart.ItemsReady" xml:space="preserve"><value>{0} item(s) ready for checkout.</value></data>
+  <data name="Cart.LineTotal" xml:space="preserve"><value>Line total</value></data>
+  <data name="Cart.OrderSummary" xml:space="preserve"><value>Order Summary</value></data>
+  <data name="Cart.SignInRequiredCheckout" xml:space="preserve"><value>Checkout requires signing in so the order can be tied to your account and shown in later order history screens.</value></data>
+  <data name="Cart.Title" xml:space="preserve"><value>Your Cart</value></data>
+  <data name="Cart.UnitPrice" xml:space="preserve"><value>Unit price</value></data>
+  <data name="Checkout.Description" xml:space="preserve"><value>Confirm your shipping details and place the order from your current cart.</value></data>
+  <data name="Checkout.Field.FullName" xml:space="preserve"><value>Full name</value></data>
+  <data name="Checkout.Field.PhoneNumber" xml:space="preserve"><value>Phone number</value></data>
+  <data name="Checkout.Field.Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Checkout.Field.Address" xml:space="preserve"><value>Address</value></data>
+  <data name="Checkout.Field.Ward" xml:space="preserve"><value>Ward</value></data>
+  <data name="Checkout.Field.Province" xml:space="preserve"><value>Province</value></data>
+  <data name="Checkout.Field.Notes" xml:space="preserve"><value>Notes</value></data>
+  <data name="Checkout.Field.PromoCode" xml:space="preserve"><value>Promo code</value></data>
+  <data name="Checkout.Field.PaymentMethod" xml:space="preserve"><value>Payment method</value></data>
+  <data name="Checkout.FreeShippingThreshold" xml:space="preserve"><value>Free shipping unlocks from {0} {1} after discount.</value></data>
+  <data name="Checkout.ReuseAddress" xml:space="preserve"><value>Reuse this address for future checkout</value></data>
+  <data name="Checkout.ShippingInformation" xml:space="preserve"><value>Shipping Information</value></data>
+  <data name="Checkout.ShippingInformationDescription" xml:space="preserve"><value>These details will be saved with the order snapshot for fulfillment and payment verification.</value></data>
+  <data name="Checkout.SubmitValidationNote" xml:space="preserve"><value>Stock, payment handling, and availability are validated again when you submit, so the order uses the latest catalog state.</value></data>
+  <data name="Checkout.Title" xml:space="preserve"><value>Checkout</value></data>
+  <data name="Label.Actions" xml:space="preserve"><value>Actions</value></data>
+  <data name="Label.Category" xml:space="preserve"><value>Category</value></data>
+  <data name="Label.CommentOptional" xml:space="preserve"><value>Comment (optional)</value></data>
+  <data name="Label.Customer" xml:space="preserve"><value>Customer</value></data>
+  <data name="Label.Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Label.Each" xml:space="preserve"><value>each</value></data>
+  <data name="Label.Images" xml:space="preserve"><value>Images</value></data>
+  <data name="Label.Items" xml:space="preserve"><value>Items</value></data>
+  <data name="Label.Joined" xml:space="preserve"><value>Joined</value></data>
+  <data name="Label.Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Label.Order" xml:space="preserve"><value>Order</value></data>
+  <data name="Label.Orders" xml:space="preserve"><value>Orders</value></data>
+  <data name="Label.Payment" xml:space="preserve"><value>Payment</value></data>
+  <data name="Label.Placed" xml:space="preserve"><value>Placed</value></data>
+  <data name="Label.Price" xml:space="preserve"><value>Price</value></data>
+  <data name="Label.Product" xml:space="preserve"><value>Product</value></data>
+  <data name="Label.Products" xml:space="preserve"><value>Products</value></data>
+  <data name="Label.Quantity" xml:space="preserve"><value>Quantity</value></data>
+  <data name="Label.Qty" xml:space="preserve"><value>Qty: {0}</value></data>
+  <data name="Label.Revenue" xml:space="preserve"><value>Revenue</value></data>
+  <data name="Label.Reviews" xml:space="preserve"><value>Reviews</value></data>
+  <data name="Label.Role" xml:space="preserve"><value>Role</value></data>
+  <data name="Label.Sku" xml:space="preserve"><value>SKU: {0}</value></data>
+  <data name="Label.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Label.Stock" xml:space="preserve"><value>Stock</value></data>
+  <data name="Label.Subtotal" xml:space="preserve"><value>Subtotal</value></data>
+  <data name="Label.Total" xml:space="preserve"><value>Total</value></data>
+  <data name="Label.User" xml:space="preserve"><value>User</value></data>
+  <data name="Message.Admin.CategoryCreated" xml:space="preserve"><value>Category created successfully.</value></data>
+  <data name="Message.Admin.CategoryDeleted" xml:space="preserve"><value>Category deleted successfully.</value></data>
+  <data name="Message.Admin.CategoryUpdated" xml:space="preserve"><value>Category updated successfully.</value></data>
+  <data name="Message.Admin.OrderUpdated" xml:space="preserve"><value>Order tracking and status updated successfully.</value></data>
+  <data name="Message.Admin.ProductCreated" xml:space="preserve"><value>Product created successfully.</value></data>
+  <data name="Message.Admin.ProductDeleted" xml:space="preserve"><value>Product deleted successfully.</value></data>
+  <data name="Message.Admin.ProductUpdated" xml:space="preserve"><value>Product updated successfully.</value></data>
+  <data name="Message.Admin.ReviewDeleted" xml:space="preserve"><value>Review deleted successfully.</value></data>
+  <data name="Message.Admin.ReviewUpdated" xml:space="preserve"><value>Review visibility and reply updated successfully.</value></data>
+  <data name="Message.Admin.SettingsUpdated" xml:space="preserve"><value>Settings updated successfully.</value></data>
+  <data name="Message.Admin.UserUpdated" xml:space="preserve"><value>User account updated successfully.</value></data>
+  <data name="Message.Auth.EmailInUse" xml:space="preserve"><value>Email is already in use.</value></data>
+  <data name="Message.Auth.InvalidLoginAttempt" xml:space="preserve"><value>Invalid login attempt.</value></data>
+  <data name="Message.Cart.Added" xml:space="preserve"><value>Product added to your cart.</value></data>
+  <data name="Message.Cart.Empty" xml:space="preserve"><value>Your cart is empty.</value></data>
+  <data name="Message.Cart.InvalidQuantity" xml:space="preserve"><value>Please choose a valid quantity.</value></data>
+  <data name="Message.Cart.Removed" xml:space="preserve"><value>Item removed from your cart.</value></data>
+  <data name="Message.Cart.Updated" xml:space="preserve"><value>Cart updated successfully.</value></data>
+  <data name="Message.Order.Cancelled" xml:space="preserve"><value>Your order was cancelled and inventory has been restored.</value></data>
+  <data name="Message.Order.Placed" xml:space="preserve"><value>Your order has been placed successfully.</value></data>
+  <data name="Message.Review.InvalidRating" xml:space="preserve"><value>Please select a rating (1-5).</value></data>
+  <data name="Message.Review.Thanks" xml:space="preserve"><value>Thank you for your review. It is now published.</value></data>
+  <data name="Message.Wishlist.Removed" xml:space="preserve"><value>Product removed from your wishlist.</value></data>
+  <data name="Message.Wishlist.SaveFailed" xml:space="preserve"><value>Unable to save this product to wishlist.</value></data>
+  <data name="Message.Wishlist.Saved" xml:space="preserve"><value>Product saved to your wishlist.</value></data>
+  <data name="Payment.CashOnDelivery" xml:space="preserve"><value>Cash on Delivery</value></data>
+  <data name="Payment.CashOnDeliveryDescription" xml:space="preserve"><value>Customer pays when the shipment arrives. Payment stays pending until the order is completed.</value></data>
+  <data name="Payment.DemoGateway" xml:space="preserve"><value>DemoPay Gateway</value></data>
+  <data name="Payment.DemoGatewayDescription" xml:space="preserve"><value>Simulated online payment integration for development and flow testing. The order is marked paid immediately.</value></data>
+  <data name="Payment.Guidance" xml:space="preserve"><value>Payment guidance</value></data>
+  <data name="Product.AllProducts" xml:space="preserve"><value>All Products</value></data>
+  <data name="Product.Filter.AllCategories" xml:space="preserve"><value>All Categories</value></data>
+  <data name="Product.Filter.InStockOnly" xml:space="preserve"><value>In stock only</value></data>
+  <data name="Product.Filter.MaxPrice" xml:space="preserve"><value>Max price</value></data>
+  <data name="Product.Filter.MinPrice" xml:space="preserve"><value>Min price</value></data>
+  <data name="Product.Filter.NameAZ" xml:space="preserve"><value>Name: A-Z</value></data>
+  <data name="Product.Filter.Newest" xml:space="preserve"><value>Newest</value></data>
+  <data name="Product.Filter.PriceHighLow" xml:space="preserve"><value>Price: High to Low</value></data>
+  <data name="Product.Filter.PriceLowHigh" xml:space="preserve"><value>Price: Low to High</value></data>
+  <data name="Product.Filter.PriceWindow" xml:space="preserve"><value>Price window: {0} - {1} VND</value></data>
+  <data name="Product.Filter.Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Product.Filter.SearchPlaceholder" xml:space="preserve"><value>Search products...</value></data>
+  <data name="Product.Filter.SortBy" xml:space="preserve"><value>Sort by</value></data>
+  <data name="Product.HoverToZoom" xml:space="preserve"><value>Hover to zoom</value></data>
+  <data name="Product.InStock" xml:space="preserve"><value>In Stock</value></data>
+  <data name="Product.ItemsFound" xml:space="preserve"><value>{0} product(s) found</value></data>
+  <data name="Product.MoreFrom" xml:space="preserve"><value>More from</value></data>
+  <data name="Product.NoneFoundDescription" xml:space="preserve"><value>Try adjusting your search or filter to find what you're looking for.</value></data>
+  <data name="Product.NoneFoundTitle" xml:space="preserve"><value>No products found</value></data>
+  <data name="Product.OnlyLeft" xml:space="preserve"><value>Only {0} left</value></data>
+  <data name="Product.OutOfStock" xml:space="preserve"><value>Out of Stock</value></data>
+  <data name="Product.RelatedProducts" xml:space="preserve"><value>Related Products</value></data>
+  <data name="Product.ResultsFor" xml:space="preserve"><value>Results for "{0}"</value></data>
+  <data name="Product.SignInWishlistHint" xml:space="preserve"><value>Sign in to save this product to your wishlist and track future purchases.</value></data>
+  <data name="Product.NoDescription" xml:space="preserve"><value>No description available.</value></data>
+  <data name="Product.Availability" xml:space="preserve"><value>Availability</value></data>
+  <data name="Product.StockCount" xml:space="preserve"><value>{0} in stock</value></data>
+  <data name="Product.ViewAllInCategory" xml:space="preserve"><value>View all in category</value></data>
+  <data name="Review.AlreadyReviewed" xml:space="preserve"><value>You have already reviewed this product. Thank you for your feedback!</value></data>
+  <data name="Review.AverageOutOf" xml:space="preserve"><value>{0} out of 5</value></data>
+  <data name="Review.BasedOnCount" xml:space="preserve"><value>Based on {0} reviews</value></data>
+  <data name="Review.BeFirst" xml:space="preserve"><value>No reviews yet. Be the first to review this product!</value></data>
+  <data name="Review.BeFirstShort" xml:space="preserve"><value>Be the first to share your experience!</value></data>
+  <data name="Review.CommentPlaceholder" xml:space="preserve"><value>Share your experience with this product...</value></data>
+  <data name="Review.CustomerReviews" xml:space="preserve"><value>Customer Reviews</value></data>
+  <data name="Review.FirstReview" xml:space="preserve"><value>First Review</value></data>
+  <data name="Review.HiddenByModeration" xml:space="preserve"><value>Your review is currently hidden by moderation and is not visible publicly.</value></data>
+  <data name="Review.LoginPromptSuffix" xml:space="preserve"><value>to write a review.</value></data>
+  <data name="Review.NoneYetShort" xml:space="preserve"><value>No reviews yet</value></data>
+  <data name="Review.PendingApproval" xml:space="preserve"><value>Your review has been submitted and is waiting for admin approval.</value></data>
+  <data name="Review.RatingOption5" xml:space="preserve"><value>5 - Excellent</value></data>
+  <data name="Review.RatingOption4" xml:space="preserve"><value>4 - Very Good</value></data>
+  <data name="Review.RatingOption3" xml:space="preserve"><value>3 - Average</value></data>
+  <data name="Review.RatingOption2" xml:space="preserve"><value>2 - Poor</value></data>
+  <data name="Review.RatingOption1" xml:space="preserve"><value>1 - Terrible</value></data>
+  <data name="Review.ReviewCount" xml:space="preserve"><value>({0} review(s))</value></data>
+  <data name="Review.RepliedOn" xml:space="preserve"><value>Replied on {0}</value></data>
+  <data name="Review.StoreReply" xml:space="preserve"><value>Store reply</value></data>
+  <data name="Review.UnknownUser" xml:space="preserve"><value>Unknown</value></data>
+  <data name="Review.VerifiedPurchaseOnly" xml:space="preserve"><value>Only verified purchases can submit reviews.</value></data>
+  <data name="Review.WantToShare" xml:space="preserve"><value>Want to share your thoughts?</value></data>
+  <data name="Review.WriteTitle" xml:space="preserve"><value>Write a Review</value></data>
+  <data name="Review.YourRating" xml:space="preserve"><value>Your Rating</value></data>
+  <data name="Summary.Discount" xml:space="preserve"><value>Discount</value></data>
+  <data name="Summary.Payment" xml:space="preserve"><value>Payment</value></data>
+  <data name="Summary.PromoApplied" xml:space="preserve"><value>Promo {0} applied</value></data>
+  <data name="Summary.Shipping" xml:space="preserve"><value>Shipping</value></data>
+  <data name="Summary.Tax" xml:space="preserve"><value>Tax ({0}%)</value></data>
+  <data name="Admin.Settings.Title" xml:space="preserve"><value>Store settings</value></data>
+  <data name="Admin.Settings.Description" xml:space="preserve"><value>Manage branding, homepage banners, and promotional messaging from one place.</value></data>
+  <data name="Admin.Settings.BrandingTitle" xml:space="preserve"><value>Branding</value></data>
+  <data name="Admin.Settings.BrandingDescription" xml:space="preserve"><value>Update the store identity shown in the shared layout and footer.</value></data>
+  <data name="Admin.Settings.Field.StoreName" xml:space="preserve"><value>Store name</value></data>
+  <data name="Admin.Settings.Field.SupportEmail" xml:space="preserve"><value>Support email</value></data>
+  <data name="Admin.Settings.LogoAltCurrent" xml:space="preserve"><value>Current logo</value></data>
+  <data name="Admin.Settings.NoLogo" xml:space="preserve"><value>No logo uploaded</value></data>
+  <data name="Admin.Settings.Field.LogoImageFile" xml:space="preserve"><value>Upload logo</value></data>
+  <data name="Admin.Settings.LogoHint" xml:space="preserve"><value>Allowed: .jpg, .jpeg, .png, .webp, .svg. Max size 2 MB.</value></data>
+  <data name="Admin.Settings.RemoveLogo" xml:space="preserve"><value>Remove current logo and fall back to icon</value></data>
+  <data name="Admin.Settings.HeroSectionTitle" xml:space="preserve"><value>Homepage hero</value></data>
+  <data name="Admin.Settings.HeroSectionDescription" xml:space="preserve"><value>Control the main hero banner text and its call-to-action buttons.</value></data>
+  <data name="Admin.Settings.Field.HeroBadgeText" xml:space="preserve"><value>Hero badge text</value></data>
+  <data name="Admin.Settings.Field.HeroTitle" xml:space="preserve"><value>Hero title</value></data>
+  <data name="Admin.Settings.Field.HeroSubtitle" xml:space="preserve"><value>Hero subtitle</value></data>
+  <data name="Admin.Settings.Field.HeroPrimaryButtonText" xml:space="preserve"><value>Primary button text</value></data>
+  <data name="Admin.Settings.Field.HeroPrimaryButtonUrl" xml:space="preserve"><value>Primary button URL</value></data>
+  <data name="Admin.Settings.Field.HeroSecondaryButtonText" xml:space="preserve"><value>Secondary button text</value></data>
+  <data name="Admin.Settings.Field.HeroSecondaryButtonUrl" xml:space="preserve"><value>Secondary button URL</value></data>
+  <data name="Admin.Settings.PromoSectionTitle" xml:space="preserve"><value>Promo and discount banner</value></data>
+  <data name="Admin.Settings.PromoSectionDescription" xml:space="preserve"><value>Manage the homepage promotion copy, coupon code, and discount percentage.</value></data>
+  <data name="Admin.Settings.PromoToggle" xml:space="preserve"><value>Show promo banner on the homepage</value></data>
+  <data name="Admin.Settings.Field.PromoTitle" xml:space="preserve"><value>Promo title</value></data>
+  <data name="Admin.Settings.Field.PromoButtonText" xml:space="preserve"><value>Promo button text</value></data>
+  <data name="Admin.Settings.Field.PromoSubtitle" xml:space="preserve"><value>Promo subtitle</value></data>
+  <data name="Admin.Settings.Field.PromoButtonUrl" xml:space="preserve"><value>Promo button URL</value></data>
+  <data name="Admin.Settings.Field.PromoCode" xml:space="preserve"><value>Promo code</value></data>
+  <data name="Admin.Settings.Field.PromoDiscountPercentage" xml:space="preserve"><value>Discount percentage</value></data>
+  <data name="Admin.Settings.FulfillmentSectionTitle" xml:space="preserve"><value>Fulfillment and payment</value></data>
+  <data name="Admin.Settings.FulfillmentSectionDescription" xml:space="preserve"><value>Configure shipping, tax, currency, and checkout guidance used by the order engine.</value></data>
+  <data name="Admin.Settings.Field.StandardShippingFee" xml:space="preserve"><value>Standard shipping fee</value></data>
+  <data name="Admin.Settings.Field.FreeShippingThreshold" xml:space="preserve"><value>Free shipping threshold</value></data>
+  <data name="Admin.Settings.Field.TaxRatePercentage" xml:space="preserve"><value>Tax rate (%)</value></data>
+  <data name="Admin.Settings.Field.CurrencyCode" xml:space="preserve"><value>Currency code</value></data>
+  <data name="Admin.Settings.Field.PaymentInstructions" xml:space="preserve"><value>Payment instructions</value></data>
+  <data name="Admin.Settings.OperationsSectionTitle" xml:space="preserve"><value>Operations and SEO</value></data>
+  <data name="Admin.Settings.OperationsSectionDescription" xml:space="preserve"><value>Keep messaging, mail delivery, and default localization aligned with storefront behavior.</value></data>
+  <data name="Admin.Settings.Field.SmtpHost" xml:space="preserve"><value>SMTP host</value></data>
+  <data name="Admin.Settings.Field.SmtpPort" xml:space="preserve"><value>SMTP port</value></data>
+  <data name="Admin.Settings.Field.SmtpUsername" xml:space="preserve"><value>SMTP username</value></data>
+  <data name="Admin.Settings.Field.SmtpPassword" xml:space="preserve"><value>SMTP password</value></data>
+  <data name="Admin.Settings.KeepPasswordHint" xml:space="preserve"><value>Leave blank to keep the current password.</value></data>
+  <data name="Admin.Settings.Field.SmtpFromEmail" xml:space="preserve"><value>SMTP from email</value></data>
+  <data name="Admin.Settings.Field.SeoMetaTitle" xml:space="preserve"><value>SEO meta title</value></data>
+  <data name="Admin.Settings.Field.DefaultCulture" xml:space="preserve"><value>Default language</value></data>
+  <data name="Admin.Settings.Field.SeoMetaDescription" xml:space="preserve"><value>SEO meta description</value></data>
+  <data name="Admin.Settings.SaveButton" xml:space="preserve"><value>Save settings</value></data>
+  <data name="Home.ShopByCategory" xml:space="preserve"><value>Shop by Category</value></data>
+  <data name="Home.ShopByCategoryDescription" xml:space="preserve"><value>Browse products by your favorite categories</value></data>
+  <data name="Home.CategoryProductCount" xml:space="preserve"><value>{0} products</value></data>
+  <data name="Home.FeaturedProducts" xml:space="preserve"><value>Featured Products</value></data>
+  <data name="Home.FeaturedProductsDescription" xml:space="preserve"><value>Our latest and most popular items</value></data>
+  <data name="Home.ViewAllProducts" xml:space="preserve"><value>View all products</value></data>
+  <data name="Home.PromoCodeLabel" xml:space="preserve"><value>Code:</value></data>
+  <data name="Home.PromoDiscount" xml:space="preserve"><value>{0}% off</value></data>
+  <data name="Order.Index.Description" xml:space="preserve"><value>Review your previous purchases and open any order for full shipment details.</value></data>
+  <data name="Order.Index.EmptyTitle" xml:space="preserve"><value>No orders yet</value></data>
+  <data name="Order.Index.EmptyDescription" xml:space="preserve"><value>Once you complete checkout, your orders will appear here.</value></data>
+  <data name="Order.LookupByCode" xml:space="preserve"><value>Lookup by code</value></data>
+  <data name="Order.Reference" xml:space="preserve"><value>Reference #{0}</value></data>
+  <data name="Order.RefundReady" xml:space="preserve"><value>Refund ready</value></data>
+  <data name="Order.ViewDetails" xml:space="preserve"><value>View details</value></data>
+  <data name="Order.Track" xml:space="preserve"><value>Track</value></data>
+  <data name="Order.Status.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Order.Status.Processing" xml:space="preserve"><value>Processing</value></data>
+  <data name="Order.Status.Completed" xml:space="preserve"><value>Completed</value></data>
+  <data name="Order.Status.Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Order.PaymentStatus.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Order.PaymentStatus.Authorized" xml:space="preserve"><value>Authorized</value></data>
+  <data name="Order.PaymentStatus.Paid" xml:space="preserve"><value>Paid</value></data>
+  <data name="Order.PaymentStatus.Failed" xml:space="preserve"><value>Failed</value></data>
+  <data name="Order.PaymentStatus.Refunded" xml:space="preserve"><value>Refunded</value></data>
+  <data name="Order.Lookup.Title" xml:space="preserve"><value>Order Lookup</value></data>
+  <data name="Order.Lookup.Badge" xml:space="preserve"><value>Order access</value></data>
+  <data name="Order.Lookup.HeroTitle" xml:space="preserve"><value>Look up an order with its code</value></data>
+  <data name="Order.Lookup.Description" xml:space="preserve"><value>Use the order number from your confirmation email to reopen the order on any device. Signed-in customers can also use this page for their account orders.</value></data>
+  <data name="Order.Lookup.OrderNumberLabel" xml:space="preserve"><value>Order number</value></data>
+  <data name="Order.Lookup.OrderNumberPlaceholder" xml:space="preserve"><value>ORD-20260330153000-1234</value></data>
+  <data name="Order.Lookup.EmailLabel" xml:space="preserve"><value>Email</value></data>
+  <data name="Order.Lookup.EmailPlaceholder" xml:space="preserve"><value>customer@example.com</value></data>
+  <data name="Order.Lookup.AuthHint" xml:space="preserve"><value>Optional for your signed-in orders. Enter it if you are trying to reopen a guest order.</value></data>
+  <data name="Order.Lookup.GuestHint" xml:space="preserve"><value>Required for guest orders so the system can verify that the code belongs to this email address.</value></data>
+  <data name="Order.Lookup.Submit" xml:space="preserve"><value>Find order</value></data>
+  <data name="Order.Lookup.BackToOrders" xml:space="preserve"><value>Back to my orders</value></data>
+  <data name="Order.Tracking.Title" xml:space="preserve"><value>Track Order</value></data>
+  <data name="Order.Tracking.Header" xml:space="preserve"><value>Shipment tracking</value></data>
+  <data name="Order.Tracking.PlacedFor" xml:space="preserve"><value>Placed on {0} for {1}.</value></data>
+  <data name="Order.BackToConfirmation" xml:space="preserve"><value>Back to confirmation</value></data>
+  <data name="Order.BackToOrder" xml:space="preserve"><value>Back to order</value></data>
+  <data name="Order.Tracking.StepPlaced" xml:space="preserve"><value>Order placed</value></data>
+  <data name="Order.Tracking.StepInProgress" xml:space="preserve"><value>Shipment in progress</value></data>
+  <data name="Order.Tracking.StepDelivered" xml:space="preserve"><value>Delivered</value></data>
+  <data name="Order.Tracking.WaitingDispatch" xml:space="preserve"><value>Waiting for dispatch</value></data>
+  <data name="Order.Tracking.PendingCompletion" xml:space="preserve"><value>Pending completion</value></data>
+  <data name="Order.ShipmentSummary" xml:space="preserve"><value>Shipment Summary</value></data>
+  <data name="Order.CurrentStatus" xml:space="preserve"><value>Current status</value></data>
+  <data name="Order.Destination" xml:space="preserve"><value>Destination</value></data>
+  <data name="Order.Carrier" xml:space="preserve"><value>Carrier</value></data>
+  <data name="Order.AwaitingAssignment" xml:space="preserve"><value>Awaiting assignment</value></data>
+  <data name="Order.TrackingNumber" xml:space="preserve"><value>Tracking number</value></data>
+  <data name="Order.NotAvailableYet" xml:space="preserve"><value>Not available yet</value></data>
+  <data name="Order.EstimatedDelivery" xml:space="preserve"><value>Estimated delivery</value></data>
+  <data name="Order.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Order.DeliveredAt" xml:space="preserve"><value>Delivered at</value></data>
+  <data name="Order.NotDeliveredYet" xml:space="preserve"><value>Not delivered yet</value></data>
+  <data name="Order.OpenCarrierTracking" xml:space="preserve"><value>Open carrier tracking</value></data>
+  <data name="Order.PaymentSnapshot" xml:space="preserve"><value>Payment Snapshot</value></data>
+  <data name="Order.Method" xml:space="preserve"><value>Method</value></data>
+  <data name="Order.Provider" xml:space="preserve"><value>Provider</value></data>
+  <data name="Order.TransactionReference" xml:space="preserve"><value>Transaction reference</value></data>
+  <data name="Order.Details.Title" xml:space="preserve"><value>Order Details</value></data>
+  <data name="Order.Details.Header" xml:space="preserve"><value>Order details</value></data>
+  <data name="Order.Details.PlacedOn" xml:space="preserve"><value>Placed on {0}.</value></data>
+  <data name="Order.BackToOrders" xml:space="preserve"><value>Back to orders</value></data>
+  <data name="Order.BuyAgain" xml:space="preserve"><value>Buy again</value></data>
+  <data name="Order.Updated" xml:space="preserve"><value>Updated</value></data>
+  <data name="Order.OrderItems" xml:space="preserve"><value>Order Items</value></data>
+  <data name="Order.ItemCount" xml:space="preserve"><value>{0} item(s)</value></data>
+  <data name="Product.Sku" xml:space="preserve"><value>SKU: {0}</value></data>
+  <data name="Order.PriceQuantity" xml:space="preserve"><value>{0} VND x {1}</value></data>
+  <data name="Order.ShipmentTracking" xml:space="preserve"><value>Shipment Tracking</value></data>
+  <data name="Order.ShippingAddress" xml:space="preserve"><value>Shipping Address</value></data>
+  <data name="Order.WorkflowAudit" xml:space="preserve"><value>Workflow Audit</value></data>
+  <data name="Order.NoWorkflowEntries" xml:space="preserve"><value>No workflow entries recorded yet.</value></data>
+  <data name="Order.CancelOrder" xml:space="preserve"><value>Cancel Order</value></data>
+  <data name="Order.CancelReasonPlaceholder" xml:space="preserve"><value>Optional reason for cancellation</value></data>
+  <data name="Order.CancelThisOrder" xml:space="preserve"><value>Cancel this order</value></data>
+  <data name="Order.DeliveryNotes" xml:space="preserve"><value>Delivery Notes</value></data>
+  <data name="Order.TrackShipment" xml:space="preserve"><value>Track shipment</value></data>
+  <data name="Order.Confirmation.Title" xml:space="preserve"><value>Order Confirmation</value></data>
+  <data name="Order.Confirmation.HeroTitle" xml:space="preserve"><value>Thank you for your order!</value></data>
+  <data name="Order.Confirmation.HeroDescription" xml:space="preserve"><value>Your order {0} has been placed successfully and is now being processed.</value></data>
+  <data name="Order.Confirmation.HeroEmailHint" xml:space="preserve"><value>If storefront email delivery is configured, this order code has also been sent to your inbox so you can look the order up later from any device.</value></data>
+  <data name="Order.TrackOrder" xml:space="preserve"><value>Track Order</value></data>
+  <data name="Order.SaveLookupLater" xml:space="preserve"><value>Save / Lookup Later</value></data>
+  <data name="Order.OrderStatus" xml:space="preserve"><value>Order Status</value></data>
+  <data name="Order.OrderNumberShort" xml:space="preserve"><value>Order #</value></data>
+  <data name="Order.QuickActions" xml:space="preserve"><value>Quick Actions</value></data>
+  <data name="Order.RefundReadyTitle" xml:space="preserve"><value>Refund-ready cancellation</value></data>
+  <data name="Order.RefundReadyDescription" xml:space="preserve"><value>This order has been marked for refund review.</value></data>
+  <data name="Order.RefundReadyDescriptionWithDate" xml:space="preserve"><value>This order has been marked for refund review on {0}.</value></data>
+  <data name="Order.TrackingSnapshot" xml:space="preserve"><value>Tracking Snapshot</value></data>
+  <data name="Order.BrowseMoreProducts" xml:space="preserve"><value>Browse more products</value></data>
+  <data name="Order.BackToHomepage" xml:space="preserve"><value>Back to homepage</value></data>
+  <data name="Order.Admin.Details.Title" xml:space="preserve"><value>Order Management</value></data>
+  <data name="Order.Admin.Header" xml:space="preserve"><value>Order management</value></data>
+  <data name="Order.Admin.PlacedBy" xml:space="preserve"><value>Customer {0} • placed {1}</value></data>
+  <data name="Order.LastUpdate" xml:space="preserve"><value>Last update</value></data>
+  <data name="Order.Admin.TrackingUrl" xml:space="preserve"><value>Tracking URL</value></data>
+  <data name="Order.WorkflowNote" xml:space="preserve"><value>Workflow note</value></data>
+  <data name="Order.CancellationReason" xml:space="preserve"><value>Cancellation reason</value></data>
+  <data name="Order.Admin.UpdateWorkflow" xml:space="preserve"><value>Update order workflow</value></data>
+  <data name="Order.AuthorizedAt" xml:space="preserve"><value>Authorized at</value></data>
+  <data name="Order.PaidAt" xml:space="preserve"><value>Paid at</value></data>
+  <data name="Order.ShippedAt" xml:space="preserve"><value>Shipped at</value></data>
+  <data name="Order.Admin.CustomerSnapshot" xml:space="preserve"><value>Customer Snapshot</value></data>
+  <data name="Order.Customer" xml:space="preserve"><value>Customer</value></data>
+  <data name="Order.UserId" xml:space="preserve"><value>User ID</value></data>
+  <data name="Order.Admin.ShippingSnapshot" xml:space="preserve"><value>Shipping Snapshot</value></data>
+  <data name="Order.CancelledAt" xml:space="preserve"><value>Cancelled at</value></data>
+  <data name="Order.CancelledBy" xml:space="preserve"><value>Cancelled by</value></data>
+  <data name="Order.Reason" xml:space="preserve"><value>Reason</value></data>
+  <data name="Order.RefundQueue" xml:space="preserve"><value>Refund queue</value></data>
+  <data name="Order.Ready" xml:space="preserve"><value>Ready</value></data>
+  <data name="Order.ReadySince" xml:space="preserve"><value>Ready since {0}</value></data>
+  <data name="Order.PriceQuantityDynamic" xml:space="preserve"><value>{0} {1} x {2}</value></data>
+</root>

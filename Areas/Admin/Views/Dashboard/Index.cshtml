@@ -1,0 +1,168 @@
+@model ASPNET_Ecommerce.Models.ViewModels.Admin.AdminDashboardViewModel
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = T["Admin.Nav.Dashboard"];
+}
+
+<div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-6">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900">@T["Admin.Nav.Dashboard"]</h1>
+        <p class="text-sm text-gray-500 mt-1">@T["Admin.Dashboard.Description"]</p>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+        <a asp-area="Admin" asp-controller="Users" asp-action="Index"
+           class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+            @T["Action.ManageUsers"]
+        </a>
+        <a asp-area="Admin" asp-controller="Orders" asp-action="Index"
+           class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition">
+            @T["Action.ReviewOrders"]
+        </a>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-6">
+    <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <div class="text-xs font-semibold uppercase tracking-wider text-gray-400">@T["Admin.Nav.Users"]</div>
+        <div class="mt-3 text-3xl font-extrabold text-gray-900">@Model.TotalUsers</div>
+        <div class="mt-2 text-sm text-gray-500">@T["Admin.Dashboard.UserSummary", Model.TotalCustomers, Model.TotalEmployees, Model.TotalAdmins]</div>
+    </section>
+
+    <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <div class="text-xs font-semibold uppercase tracking-wider text-gray-400">@T["Admin.Nav.Catalog"]</div>
+        <div class="mt-3 text-3xl font-extrabold text-gray-900">@Model.TotalProducts</div>
+        <div class="mt-2 text-sm text-gray-500">@T["Admin.Dashboard.CatalogSummary", Model.ActiveProducts]</div>
+    </section>
+
+    <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <div class="text-xs font-semibold uppercase tracking-wider text-gray-400">@T["Admin.Nav.Orders"]</div>
+        <div class="mt-3 text-3xl font-extrabold text-gray-900">@Model.TotalOrders</div>
+        <div class="mt-2 text-sm text-gray-500">@T["Admin.Dashboard.OrdersSummary", Model.PendingOrders]</div>
+    </section>
+
+    <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+        <div class="text-xs font-semibold uppercase tracking-wider text-gray-400">@T["Admin.Nav.Reviews"]</div>
+        <div class="mt-3 text-3xl font-extrabold text-gray-900">@Model.HiddenReviews</div>
+        <div class="mt-2 text-sm text-gray-500">@T["Admin.Dashboard.ReviewsSummary"]</div>
+    </section>
+
+    <section class="bg-gradient-to-br from-brand-600 to-brand-700 rounded-2xl shadow-sm p-5 text-white">
+        <div class="text-xs font-semibold uppercase tracking-wider text-brand-100">@T["Label.Revenue"]</div>
+        <div class="mt-3 text-3xl font-extrabold">@Model.TotalRevenue.ToString("N0")</div>
+        <div class="mt-2 text-sm text-brand-100">@T["Admin.Dashboard.RevenueDescription"]</div>
+    </section>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1.6fr)_minmax(320px,1fr)] gap-6">
+    <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between gap-4">
+            <div>
+                <h2 class="text-lg font-bold text-gray-900">@T["Admin.Dashboard.RecentOrdersTitle"]</h2>
+                <p class="text-sm text-gray-500 mt-1">@T["Admin.Dashboard.RecentOrdersDescription"]</p>
+            </div>
+            <a asp-area="Admin" asp-controller="Orders" asp-action="Index" class="text-sm font-medium text-brand-600 hover:text-brand-700 transition">@T["Action.OpenOrders"]</a>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm text-left">
+                <thead class="text-xs text-gray-500 uppercase bg-gray-50 border-b border-gray-100">
+                    <tr>
+                        <th class="px-6 py-4">@T["Label.Order"]</th>
+                        <th class="px-6 py-4">@T["Label.Customer"]</th>
+                        <th class="px-6 py-4">@T["Label.Status"]</th>
+                        <th class="px-6 py-4">@T["Label.Placed"]</th>
+                        <th class="px-6 py-4 text-right">@T["Label.Total"]</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @if (Model.RecentOrders.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="5" class="px-6 py-12 text-center text-gray-400">@T["Admin.Dashboard.NoOrders"]</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var order in Model.RecentOrders)
+                        {
+                            var statusClasses = order.Status switch
+                            {
+                                ASPNET_Ecommerce.Models.Orders.OrderStatus.Pending => "bg-amber-100 text-amber-800",
+                                ASPNET_Ecommerce.Models.Orders.OrderStatus.Processing => "bg-blue-100 text-blue-800",
+                                ASPNET_Ecommerce.Models.Orders.OrderStatus.Completed => "bg-emerald-100 text-emerald-800",
+                                ASPNET_Ecommerce.Models.Orders.OrderStatus.Cancelled => "bg-red-100 text-red-800",
+                                _ => "bg-gray-100 text-gray-700"
+                            };
+
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <a asp-area="Admin" asp-controller="Orders" asp-action="Details" asp-route-id="@order.OrderId"
+                                       class="font-semibold text-gray-900 hover:text-brand-700 transition">@order.OrderNumber</a>
+                                </td>
+                                <td class="px-6 py-4 text-gray-600">@order.CustomerName</td>
+                                <td class="px-6 py-4">
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold @statusClasses">@order.Status</span>
+                                </td>
+                                <td class="px-6 py-4 text-gray-600">@order.CreatedAtUtc.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</td>
+                                <td class="px-6 py-4 text-right font-semibold text-gray-900">@order.Subtotal.ToString("N0") VND</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="space-y-6">
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-base font-bold text-gray-900">@T["Admin.Dashboard.LowStockTitle"]</h2>
+                    <p class="text-sm text-gray-500 mt-1">@T["Admin.Dashboard.LowStockDescription"]</p>
+                </div>
+                <a asp-area="Admin" asp-controller="Products" asp-action="Index" class="text-sm font-medium text-brand-600 hover:text-brand-700 transition">@T["Admin.Nav.Catalog"]</a>
+            </div>
+            <div class="divide-y divide-gray-100">
+                @if (Model.LowStockProducts.Count == 0)
+                {
+                    <div class="px-5 py-10 text-center text-sm text-gray-400">@T["Admin.Dashboard.LowStockEmpty"]</div>
+                }
+                else
+                {
+                    @foreach (var product in Model.LowStockProducts)
+                    {
+                        <div class="px-5 py-4 flex items-center justify-between gap-4">
+                            <div>
+                                <a asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@product.ProductId"
+                                   class="text-sm font-semibold text-gray-900 hover:text-brand-700 transition">@product.ProductName</a>
+                                <div class="text-xs text-gray-400 mt-1">@T["Admin.Dashboard.UpdatedAt", product.ReferenceAtUtc.ToLocalTime().ToString("dd MMM yyyy, HH:mm")]</div>
+                            </div>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold @(product.StockQuantity == 0 ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-700")">
+                                @T["Admin.Dashboard.LeftCount", product.StockQuantity]
+                            </span>
+                        </div>
+                    }
+                }
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+            <h2 class="text-base font-bold text-gray-900">@T["Admin.Dashboard.QueueSummary"]</h2>
+            <div class="mt-4 space-y-3 text-sm">
+                <a asp-area="Admin" asp-controller="Orders" asp-action="Index" asp-route-status="Pending" class="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 hover:border-brand-200 hover:bg-brand-50 transition">
+                    <span class="text-gray-700">@T["Admin.Dashboard.OrdersSummary", Model.PendingOrders]</span>
+                    <span class="font-bold text-brand-700">@Model.PendingOrders</span>
+                </a>
+                <a asp-area="Admin" asp-controller="Reviews" asp-action="Index" asp-route-status="Hidden" class="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 hover:border-brand-200 hover:bg-brand-50 transition">
+                    <span class="text-gray-700">@T["Admin.Dashboard.ReviewsSummary"]</span>
+                    <span class="font-bold text-brand-700">@Model.HiddenReviews</span>
+                </a>
+                <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="flex items-center justify-between rounded-xl border border-gray-200 px-4 py-3 hover:border-brand-200 hover:bg-brand-50 transition">
+                    <span class="text-gray-700">@T["Admin.Dashboard.ManageAccounts"]</span>
+                    <span class="font-bold text-brand-700">@Model.TotalUsers</span>
+                </a>
+            </div>
+        </section>
+    </div>
+</div>

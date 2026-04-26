@@ -1,0 +1,16 @@
+# Build context exclusions
+.git
+.gitignore
+.vs
+.vscode
+bin
+obj
+.codexbin
+.codexobj
+node_modules
+npm-debug.log*
+docker-compose*
+README.md
+ARCHITECTURE.md
+doc/
+tests/

@@ -1,0 +1,77 @@
+# Build results
+bin/
+obj/
+out/
+publish/
+artifacts/
+TestResults/
+*.nupkg
+*.snupkg
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+# Visual Studio / VS Code / Rider
+.vs/
+.vscode/
+.idea/
+# Logs and diagnostics
+*.log
+logs/
+Log/
+*.tlog
+# ASP.NET Core application configuration.
+# Keep real environment values out of git. Commit only sanitized samples.
+appsettings*.json
+!appsettings.example.json
+!appsettings.*.example.json
+!appsettings.template.json
+!appsettings.*.template.json
+# Local environment files
+.env
+.env.*
+!.env.example
+!.env.*.example
+# Docker compose files often contain passwords, connection strings, and domains.
+docker-compose*.yml
+docker-compose*.yaml
+!docker-compose.example.yml
+!docker-compose.example.yaml
+!docker-compose.*.example.yml
+!docker-compose.*.example.yaml
+# Secrets, keys, and certificates
+secrets/
+Secrets/
+*.secret
+*.secrets
+*.key
+*.pem
+*.pfx
+*.p12
+*.crt
+*.cer
+*.csr
+*.jks
+*.keystore
+*.pubxml
+*.pubxml.user
+# Local databases and backups
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+*.bacpac
+# Runtime uploads / generated user content
+wwwroot/uploads/
+# Node / Tailwind
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

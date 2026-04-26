@@ -1,0 +1,306 @@
+@model SettingFormViewModel
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = T["Admin.Nav.Settings"];
+}
+
+<div class="max-w-5xl mx-auto">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">@T["Admin.Settings.Title"]</h1>
+            <p class="text-sm text-gray-500 mt-1">@T["Admin.Settings.Description"]</p>
+        </div>
+        <a asp-area="" asp-controller="Home" asp-action="Index"
+           class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            @T["Admin.Nav.ViewStore"]
+        </a>
+    </div>
+
+    @if (TempData["StatusMessage"] is string statusMessage)
+    {
+        <div class="flex items-center gap-2 p-4 mb-4 text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-lg">
+            <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            @statusMessage
+        </div>
+    }
+
+    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 sm:p-8">
+        <form asp-area="Admin" asp-controller="Settings" asp-action="Index" method="post" enctype="multipart/form-data" class="space-y-8">
+            @Html.AntiForgeryToken()
+            <input asp-for="Id" type="hidden" />
+
+            <div asp-validation-summary="ModelOnly" class="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"></div>
+
+            <section>
+                <div class="mb-5">
+                    <h2 class="text-lg font-bold text-gray-900">@T["Admin.Settings.BrandingTitle"]</h2>
+                    <p class="text-sm text-gray-500 mt-1">@T["Admin.Settings.BrandingDescription"]</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label asp-for="StoreName" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.StoreName"]</label>
+                        <input asp-for="StoreName" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="StoreName" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="SupportEmail" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.SupportEmail"]</label>
+                        <input asp-for="SupportEmail" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="SupportEmail" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                </div>
+
+                <div class="mt-5 grid grid-cols-1 lg:grid-cols-[180px_minmax(0,1fr)] gap-5 items-start">
+                    <div class="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-4 flex items-center justify-center min-h-44">
+                        @if (!string.IsNullOrWhiteSpace(Model.ExistingLogoImagePath))
+                        {
+                            <img src="@Model.ExistingLogoImagePath" alt="@T["Admin.Settings.LogoAltCurrent"]" class="max-h-24 w-auto object-contain" />
+                        }
+                        else
+                        {
+                            <div class="text-center text-gray-400 text-sm">
+                                <div class="mx-auto w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center mb-3">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                </div>
+                                @T["Admin.Settings.NoLogo"]
+                            </div>
+                        }
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label asp-for="LogoImageFile" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.LogoImageFile"]</label>
+                            <input asp-for="LogoImageFile" type="file" accept=".jpg,.jpeg,.png,.webp,.svg"
+                                   class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 transition" />
+                            <p class="mt-1 text-xs text-gray-400">@T["Admin.Settings.LogoHint"]</p>
+                            <span asp-validation-for="LogoImageFile" class="text-red-500 text-sm mt-1"></span>
+                        </div>
+                        <label class="inline-flex items-center gap-2 text-sm text-gray-600">
+                            <input asp-for="RemoveLogoImage" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                            <span>@T["Admin.Settings.RemoveLogo"]</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="border-t border-gray-100 pt-8">
+                <div class="mb-5">
+                    <h2 class="text-lg font-bold text-gray-900">Homepage visibility</h2>
+                    <p class="text-sm text-gray-500 mt-1">Control which homepage blocks are rendered while the new slider structure is being introduced.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <label class="inline-flex items-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700">
+                        <input asp-for="ShowHomepageSlider" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>Show slider</span>
+                    </label>
+                    <label class="inline-flex items-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700">
+                        <input asp-for="ShowHomepageCategories" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>Show categories</span>
+                    </label>
+                    <label class="inline-flex items-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700">
+                        <input asp-for="ShowHomepageNewProducts" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>Show new products</span>
+                    </label>
+                    <label class="inline-flex items-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700">
+                        <input asp-for="ShowHomepageFeaturedProducts" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>Show featured products</span>
+                    </label>
+                    <label class="inline-flex items-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 md:col-span-2">
+                        <input asp-for="ShowHomepageDiscountProducts" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>Show discount products</span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="border-t border-gray-100 pt-8">
+                <div class="mb-5">
+                    <h2 class="text-lg font-bold text-gray-900">@T["Admin.Settings.HeroSectionTitle"]</h2>
+                    <p class="text-sm text-gray-500 mt-1">@T["Admin.Settings.HeroSectionDescription"]</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label asp-for="HeroBadgeText" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.HeroBadgeText"]</label>
+                        <input asp-for="HeroBadgeText" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="HeroBadgeText" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="HeroTitle" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.HeroTitle"]</label>
+                        <input asp-for="HeroTitle" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="HeroTitle" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="HeroSubtitle" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.HeroSubtitle"]</label>
+                        <textarea asp-for="HeroSubtitle" rows="3" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                        <span asp-validation-for="HeroSubtitle" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="HeroPrimaryButtonText" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.HeroPrimaryButtonText"]</label>
+                        <input asp-for="HeroPrimaryButtonText" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="HeroPrimaryButtonText" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="HeroPrimaryButtonUrl" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.HeroPrimaryButtonUrl"]</label>
+                        <input asp-for="HeroPrimaryButtonUrl" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="HeroPrimaryButtonUrl" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="HeroSecondaryButtonText" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.HeroSecondaryButtonText"]</label>
+                        <input asp-for="HeroSecondaryButtonText" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="HeroSecondaryButtonText" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="HeroSecondaryButtonUrl" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.HeroSecondaryButtonUrl"]</label>
+                        <input asp-for="HeroSecondaryButtonUrl" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="HeroSecondaryButtonUrl" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="border-t border-gray-100 pt-8">
+                <div class="mb-5">
+                    <h2 class="text-lg font-bold text-gray-900">@T["Admin.Settings.PromoSectionTitle"]</h2>
+                    <p class="text-sm text-gray-500 mt-1">@T["Admin.Settings.PromoSectionDescription"]</p>
+                </div>
+
+                <label class="inline-flex items-center gap-2 text-sm text-gray-700 mb-5">
+                    <input asp-for="IsPromoBannerActive" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                    <span>@T["Admin.Settings.PromoToggle"]</span>
+                </label>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label asp-for="PromoTitle" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.PromoTitle"]</label>
+                        <input asp-for="PromoTitle" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="PromoTitle" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="PromoButtonText" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.PromoButtonText"]</label>
+                        <input asp-for="PromoButtonText" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="PromoButtonText" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="PromoSubtitle" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.PromoSubtitle"]</label>
+                        <textarea asp-for="PromoSubtitle" rows="3" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                        <span asp-validation-for="PromoSubtitle" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="PromoButtonUrl" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.PromoButtonUrl"]</label>
+                        <input asp-for="PromoButtonUrl" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="PromoButtonUrl" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="PromoCode" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.PromoCode"]</label>
+                        <input asp-for="PromoCode" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm uppercase focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="PromoCode" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="PromoDiscountPercentage" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.PromoDiscountPercentage"]</label>
+                        <input asp-for="PromoDiscountPercentage" type="text" inputmode="decimal" asp-format="{0:0.##}" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="PromoDiscountPercentage" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="border-t border-gray-100 pt-8">
+                <div class="mb-5">
+                    <h2 class="text-lg font-bold text-gray-900">@T["Admin.Settings.FulfillmentSectionTitle"]</h2>
+                    <p class="text-sm text-gray-500 mt-1">@T["Admin.Settings.FulfillmentSectionDescription"]</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label asp-for="StandardShippingFee" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.StandardShippingFee"]</label>
+                        <input asp-for="StandardShippingFee" type="text" inputmode="decimal" asp-format="{0:0.##}" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="StandardShippingFee" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="FreeShippingThreshold" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.FreeShippingThreshold"]</label>
+                        <input asp-for="FreeShippingThreshold" type="text" inputmode="decimal" asp-format="{0:0.##}" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="FreeShippingThreshold" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="TaxRatePercentage" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.TaxRatePercentage"]</label>
+                        <input asp-for="TaxRatePercentage" type="text" inputmode="decimal" asp-format="{0:0.##}" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="TaxRatePercentage" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="CurrencyCode" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.CurrencyCode"]</label>
+                        <input asp-for="CurrencyCode" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm uppercase focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="CurrencyCode" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="PaymentInstructions" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.PaymentInstructions"]</label>
+                        <textarea asp-for="PaymentInstructions" rows="3" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                        <span asp-validation-for="PaymentInstructions" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="border-t border-gray-100 pt-8">
+                <div class="mb-5">
+                    <h2 class="text-lg font-bold text-gray-900">@T["Admin.Settings.OperationsSectionTitle"]</h2>
+                    <p class="text-sm text-gray-500 mt-1">@T["Admin.Settings.OperationsSectionDescription"]</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label asp-for="SmtpHost" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.SmtpHost"]</label>
+                        <input asp-for="SmtpHost" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="SmtpHost" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="SmtpPort" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.SmtpPort"]</label>
+                        <input asp-for="SmtpPort" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="SmtpPort" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="SmtpUsername" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.SmtpUsername"]</label>
+                        <input asp-for="SmtpUsername" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="SmtpUsername" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="SmtpPassword" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.SmtpPassword"]</label>
+                        <input asp-for="SmtpPassword" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" autocomplete="new-password" />
+                        <p class="mt-1 text-xs text-gray-400">@T["Admin.Settings.KeepPasswordHint"]</p>
+                        <span asp-validation-for="SmtpPassword" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="SmtpFromEmail" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.SmtpFromEmail"]</label>
+                        <input asp-for="SmtpFromEmail" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="SmtpFromEmail" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="SeoMetaTitle" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.SeoMetaTitle"]</label>
+                        <input asp-for="SeoMetaTitle" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="SeoMetaTitle" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="DefaultCulture" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.DefaultCulture"]</label>
+                        <select asp-for="DefaultCulture" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition">
+                            <option value="en">@T["Language.English"]</option>
+                            <option value="vi">@T["Language.Vietnamese"]</option>
+                        </select>
+                        <span asp-validation-for="DefaultCulture" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="SeoMetaDescription" class="block text-sm font-medium text-gray-700 mb-1">@T["Admin.Settings.Field.SeoMetaDescription"]</label>
+                        <textarea asp-for="SeoMetaDescription" rows="3" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                        <span asp-validation-for="SeoMetaDescription" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button type="submit" class="px-5 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition">@T["Admin.Settings.SaveButton"]</button>
+                <a asp-area="Admin" asp-controller="Products" asp-action="Index" class="px-5 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-xl hover:bg-gray-50 transition">@T["Action.Cancel"]</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

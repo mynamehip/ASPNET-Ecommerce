@@ -1,0 +1,61 @@
+@model CategoryFormViewModel
+
+@{
+    ViewData["Title"] = "Edit category";
+}
+
+<div class="max-w-2xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Edit category</h1>
+            <p class="text-sm text-gray-500 mt-1">Update category details and visibility.</p>
+        </div>
+        <a asp-area="Admin" asp-controller="Categories" asp-action="Index"
+           class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            Back
+        </a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
+        <form asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@Model.Id" method="post" class="space-y-5">
+            <input asp-for="Id" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm bg-red-50 rounded-lg p-3"></div>
+
+            <div>
+                <label asp-for="Name" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                <input asp-for="Name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                <span asp-validation-for="Name" class="text-red-500 text-sm mt-1"></span>
+            </div>
+
+            <div>
+                <label asp-for="Description" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                <textarea asp-for="Description" rows="4" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                <span asp-validation-for="Description" class="text-red-500 text-sm mt-1"></span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label asp-for="DisplayOrder" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                    <input asp-for="DisplayOrder" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="DisplayOrder" class="text-red-500 text-sm mt-1"></span>
+                </div>
+                <div class="flex items-end pb-1">
+                    <label class="inline-flex items-center gap-2 cursor-pointer">
+                        <input asp-for="IsActive" class="w-4 h-4 text-brand-600 bg-gray-100 border-gray-300 rounded focus:ring-brand-500" />
+                        <span class="text-sm font-medium text-gray-700">Active</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button type="submit" class="px-5 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-lg hover:bg-brand-700 focus:ring-4 focus:ring-brand-200 transition">Save changes</button>
+                <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="px-5 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,121 @@
+@model SliderFormViewModel
+
+@{
+    var title = Model.IsBanner ? "Edit banner slide" : "Edit regular slide";
+    ViewData["Title"] = title;
+}
+
+<div class="max-w-4xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">@title</h1>
+            <p class="text-sm text-gray-500 mt-1">Update content, ordering, visibility, optional URLs, and background image for this slider item.</p>
+        </div>
+        <a asp-area="Admin" asp-controller="Slider" asp-action="Index"
+           class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            Back
+        </a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
+        <form asp-area="Admin" asp-controller="Slider" asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data" class="space-y-6">
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="ItemType" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm bg-red-50 rounded-lg p-3"></div>
+
+            @if (Model.IsBanner)
+            {
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label asp-for="Content" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                        <input asp-for="Content" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="Content" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Title" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                        <input asp-for="Title" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="Title" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label asp-for="Description" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                        <textarea asp-for="Description" rows="4" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                        <span asp-validation-for="Description" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="PrimaryButtonUrl" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                        <input asp-for="PrimaryButtonUrl" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="PrimaryButtonUrl" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                    <div>
+                        <label asp-for="SecondaryButtonUrl" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                        <input asp-for="SecondaryButtonUrl" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="SecondaryButtonUrl" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <label asp-for="ClickUrl" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                    <input asp-for="ClickUrl" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="ClickUrl" class="text-red-500 text-sm mt-1"></span>
+                </div>
+            }
+
+            <div class="grid grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] gap-5 items-start">
+                <div class="rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-4 flex items-center justify-center min-h-44">
+                    @if (!string.IsNullOrWhiteSpace(Model.ExistingBackgroundImagePath))
+                    {
+                        <img src="@Model.ExistingBackgroundImagePath" alt="Current background" class="w-full h-40 object-cover rounded-lg border border-gray-200" />
+                    }
+                    else
+                    {
+                        <div class="text-center text-gray-400 text-sm">
+                            <div class="mx-auto w-12 h-12 rounded-xl bg-white border border-gray-200 flex items-center justify-center mb-3">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            @(Model.IsBanner ? "Default background will be used" : "No background image")
+                        </div>
+                    }
+                </div>
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="md:col-span-2">
+                            <label asp-for="BackgroundImageFile" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                            <input asp-for="BackgroundImageFile" type="file" accept=".jpg,.jpeg,.png,.webp,.svg"
+                                   class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 transition" />
+                            <p class="mt-1 text-xs text-gray-400">Upload a replacement background image. Service rules still apply by slide type. Click URL is optional.</p>
+                            <span asp-validation-for="BackgroundImageFile" class="text-red-500 text-sm mt-1"></span>
+                        </div>
+                        <div>
+                            <label asp-for="DisplayOrder" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                            <input asp-for="DisplayOrder" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                            <span asp-validation-for="DisplayOrder" class="text-red-500 text-sm mt-1"></span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <label class="inline-flex items-center gap-2 text-sm text-gray-700">
+                            <input asp-for="IsActive" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                            <span>Visible on storefront</span>
+                        </label>
+                        <label class="inline-flex items-center gap-2 text-sm text-gray-700">
+                            <input asp-for="RemoveBackgroundImage" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                            <span>Remove current background</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button type="submit" class="px-5 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-lg hover:bg-brand-700 focus:ring-4 focus:ring-brand-200 transition">Save changes</button>
+                <a asp-area="Admin" asp-controller="Slider" asp-action="Index" class="px-5 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

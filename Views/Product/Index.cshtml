@@ -1,0 +1,240 @@
+@model ASPNET_Ecommerce.Models.ViewModels.Products.ProductListViewModel
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = T["Nav.Products"];
+}
+
+<div class="flex flex-col lg:flex-row gap-8">
+
+    <!-- Sidebar Filters -->
+    <aside class="w-full lg:w-64 shrink-0">
+        <form asp-controller="Product" asp-action="Index" method="get" class="space-y-6">
+
+            <!-- Search -->
+            <div>
+                <label for="search" class="block text-sm font-semibold text-gray-900 mb-2">@T["Product.Filter.Search"]</label>
+                <div class="relative">
+                    <input type="text" name="search" id="search" value="@Model.SearchQuery"
+                           placeholder="@T["Product.Filter.SearchPlaceholder"]"
+                           class="block w-full rounded-lg border border-gray-300 bg-white pl-10 pr-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
+            </div>
+
+            <!-- Category Filter -->
+            <div>
+                <p class="text-sm font-semibold text-gray-900 mb-2">@T["Label.Category"]</p>
+                <div class="space-y-2">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="radio" name="categoryId" value="" @(Model.CategoryId is null ? "checked" : "")
+                               class="w-4 h-4 text-brand-600 border-gray-300 focus:ring-brand-500" />
+                        <span class="text-sm text-gray-600 group-hover:text-gray-900 transition">@T["Product.Filter.AllCategories"]</span>
+                    </label>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="radio" name="categoryId" value="@category.Id"
+                                   @(Model.CategoryId == category.Id ? "checked" : "")
+                                   class="w-4 h-4 text-brand-600 border-gray-300 focus:ring-brand-500" />
+                            <span class="text-sm text-gray-600 group-hover:text-gray-900 transition">@category.Name</span>
+                            <span class="text-xs text-gray-400 ml-auto">@category.Products.Count</span>
+                        </label>
+                    }
+                </div>
+            </div>
+
+            <!-- Sort -->
+            <div>
+                <label for="sortBy" class="block text-sm font-semibold text-gray-900 mb-2">@T["Product.Filter.SortBy"]</label>
+                <select name="sortBy" id="sortBy"
+                        class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition">
+                    <option value="" selected="@(string.IsNullOrEmpty(Model.SortBy))">@T["Product.Filter.Newest"]</option>
+                    <option value="price_asc" selected="@(Model.SortBy == "price_asc")">@T["Product.Filter.PriceLowHigh"]</option>
+                    <option value="price_desc" selected="@(Model.SortBy == "price_desc")">@T["Product.Filter.PriceHighLow"]</option>
+                    <option value="name" selected="@(Model.SortBy == "name")">@T["Product.Filter.NameAZ"]</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label for="minPrice" class="block text-sm font-semibold text-gray-900 mb-2">@T["Product.Filter.MinPrice"]</label>
+                    <input type="number" min="0" step="1000" name="minPrice" id="minPrice" value="@Model.MinPrice"
+                           class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                </div>
+                <div>
+                    <label for="maxPrice" class="block text-sm font-semibold text-gray-900 mb-2">@T["Product.Filter.MaxPrice"]</label>
+                    <input type="number" min="0" step="1000" name="maxPrice" id="maxPrice" value="@Model.MaxPrice"
+                           class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                </div>
+            </div>
+
+            <label class="flex items-center gap-2 cursor-pointer group">
+                <input type="checkbox" name="inStockOnly" value="true" @(Model.InStockOnly ? "checked" : "")
+                       class="w-4 h-4 text-brand-600 border-gray-300 rounded focus:ring-brand-500" />
+                <span class="text-sm text-gray-600 group-hover:text-gray-900 transition">@T["Product.Filter.InStockOnly"]</span>
+            </label>
+
+            <div class="rounded-xl bg-gray-50 border border-gray-100 px-4 py-3 text-xs text-gray-500">
+                @T["Product.Filter.PriceWindow", Model.PriceRangeMin.ToString("N0"), Model.PriceRangeMax.ToString("N0")]
+            </div>
+
+            <button type="submit"
+                    class="w-full px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-lg hover:bg-brand-700 transition">
+                @T["Action.ApplyFilters"]
+            </button>
+
+            @if (!string.IsNullOrEmpty(Model.SearchQuery) || Model.CategoryId.HasValue || !string.IsNullOrEmpty(Model.SortBy) || Model.MinPrice.HasValue || Model.MaxPrice.HasValue || Model.InStockOnly)
+            {
+                <a asp-controller="Product" asp-action="Index"
+                   class="block w-full text-center px-4 py-2.5 text-sm font-medium text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                    @T["Action.ClearFilters"]
+                </a>
+            }
+        </form>
+    </aside>
+
+    <!-- Product Grid -->
+    <div class="flex-1 min-w-0">
+
+        <!-- Results Header -->
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900">
+                    @if (!string.IsNullOrWhiteSpace(Model.SearchQuery))
+                    {
+                        <span>@T["Product.ResultsFor", Model.SearchQuery]</span>
+                    }
+                    else
+                    {
+                        <span>@T["Product.AllProducts"]</span>
+                    }
+                </h1>
+                <p class="text-sm text-gray-500 mt-1">@T["Product.ItemsFound", Model.TotalItems]</p>
+            </div>
+        </div>
+
+        @if (Model.Products.Count == 0)
+        {
+            <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-12 text-center">
+                <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                <h3 class="text-lg font-semibold text-gray-900 mb-1">@T["Product.NoneFoundTitle"]</h3>
+                <p class="text-sm text-gray-500 mb-4">@T["Product.NoneFoundDescription"]</p>
+                <a asp-controller="Product" asp-action="Index"
+                   class="inline-flex px-5 py-2.5 text-sm font-medium text-brand-600 border border-brand-200 rounded-lg hover:bg-brand-50 transition">
+                    @T["Action.ClearAllFilters"]
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                @foreach (var product in Model.Products)
+                {
+                    var primaryImage = product.Images.OrderBy(i => i.DisplayOrder).FirstOrDefault(i => i.IsPrimary)
+                        ?? product.Images.OrderBy(i => i.DisplayOrder).FirstOrDefault();
+
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id"
+                       class="group bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <!-- Image -->
+                        <div class="relative aspect-square bg-gray-50 overflow-hidden">
+                            @if (primaryImage is not null)
+                            {
+                                <img src="@primaryImage.ImagePath" alt="@product.Name"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                            }
+                            else
+                            {
+                                <div class="w-full h-full flex items-center justify-center text-gray-300">
+                                    <svg class="w-16 h-16" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                </div>
+                            }
+                            @if (product.Category is not null)
+                            {
+                                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/90 backdrop-blur-sm text-gray-700 shadow-sm">
+                                    @product.Category.Name
+                                </span>
+                            }
+                            @if (product.StockQuantity == 0)
+                            {
+                                <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-red-500 text-white shadow-sm">
+                                    @T["Product.OutOfStock"]
+                                </span>
+                            }
+                        </div>
+                        <!-- Info -->
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-900 text-sm line-clamp-2 group-hover:text-brand-700 transition">@product.Name</h3>
+                            @if (!string.IsNullOrWhiteSpace(product.Description))
+                            {
+                                <p class="text-xs text-gray-400 mt-1 line-clamp-2">@product.Description</p>
+                            }
+                            <div class="flex items-center justify-between mt-3">
+                                <div>
+                                    <span class="text-lg font-bold text-brand-600">@product.EffectivePrice.ToString("N0") <span class="text-xs font-normal text-gray-400">VND</span></span>
+                                    @if (product.HasActiveDiscount)
+                                    {
+                                        <div class="text-xs text-gray-400 line-through">@product.Price.ToString("N0") VND</div>
+                                    }
+                                </div>
+                                @if (product.StockQuantity > 0 && product.StockQuantity <= 5)
+                                {
+                                    <span class="text-xs text-amber-600 font-medium">@T["Product.OnlyLeft", product.StockQuantity]</span>
+                                }
+                            </div>
+                            <div class="mt-3">
+                                <span class="block w-full text-center py-2 text-sm font-medium text-brand-600 border border-brand-200 rounded-lg group-hover:bg-brand-600 group-hover:text-white transition cursor-pointer">
+                                    @T["Action.ViewDetails"]
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+
+            <!-- Pagination -->
+            @if (Model.TotalPages > 1)
+            {
+                <nav class="flex items-center justify-center gap-1 mt-10">
+                    @if (Model.CurrentPage > 1)
+                    {
+                        <a asp-controller="Product" asp-action="Index"
+                           asp-route-search="@Model.SearchQuery" asp-route-categoryId="@Model.CategoryId"
+                                    asp-route-sortBy="@Model.SortBy" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-inStockOnly="@Model.InStockOnly" asp-route-page="@(Model.CurrentPage - 1)"
+                           class="px-3 py-2 text-sm font-medium text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                        </a>
+                    }
+
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        var isActive = i == Model.CurrentPage;
+                        @if (i == 1 || i == Model.TotalPages || (i >= Model.CurrentPage - 2 && i <= Model.CurrentPage + 2))
+                        {
+                            <a asp-controller="Product" asp-action="Index"
+                               asp-route-search="@Model.SearchQuery" asp-route-categoryId="@Model.CategoryId"
+                                         asp-route-sortBy="@Model.SortBy" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-inStockOnly="@Model.InStockOnly" asp-route-page="@i"
+                               class="px-3.5 py-2 text-sm font-medium rounded-lg transition @(isActive ? "bg-brand-600 text-white shadow-sm" : "text-gray-600 border border-gray-300 hover:bg-gray-50")">
+                                @i
+                            </a>
+                        }
+                        else if (i == Model.CurrentPage - 3 || i == Model.CurrentPage + 3)
+                        {
+                            <span class="px-2 py-2 text-gray-400 text-sm">...</span>
+                        }
+                    }
+
+                    @if (Model.CurrentPage < Model.TotalPages)
+                    {
+                        <a asp-controller="Product" asp-action="Index"
+                           asp-route-search="@Model.SearchQuery" asp-route-categoryId="@Model.CategoryId"
+                                    asp-route-sortBy="@Model.SortBy" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-inStockOnly="@Model.InStockOnly" asp-route-page="@(Model.CurrentPage + 1)"
+                           class="px-3 py-2 text-sm font-medium text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                    }
+                </nav>
+            }
+        }
+    </div>
+</div>

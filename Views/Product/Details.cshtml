@@ -1,0 +1,449 @@
+@model ASPNET_Ecommerce.Models.ViewModels.Products.ProductDetailViewModel
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = Model.Product.Name;
+}
+
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- Breadcrumb -->
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    @T["Nav.Home"]
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <a href="/Product" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">@T["Nav.Products"]</a>
+                </div>
+            </li>
+            @if (Model.Product.Category != null)
+            {
+                <li>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        <a href="/Product?categoryId=@Model.Product.CategoryId" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">@Model.Product.Category.Name</a>
+                    </div>
+                </li>
+            }
+            <li aria-current="page">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400 truncate w-32 md:w-auto">@Model.Product.Name</span>
+                </div>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Product Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-12 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+        
+        <!-- Left: Image Gallery -->
+        <div class="p-6 lg:p-10 bg-gray-50/50 dark:bg-gray-800/50">
+            @if (Model.Product.Images != null && Model.Product.Images.Any())
+            {
+                var primaryImage = Model.Product.Images.FirstOrDefault(i => i.IsPrimary) ?? Model.Product.Images.First();
+                <div class="aspect-square bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 mb-4 group relative">
+                    <img id="mainImage" src="@primaryImage.ImagePath" alt="@Model.Product.Name" class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500 ease-in-out" />
+                    @if (Model.Product.StockQuantity == 0)
+                    {
+                        <div class="absolute top-4 left-4 bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full dark:bg-red-900 dark:text-red-300 backdrop-blur-sm bg-opacity-90">@T["Product.OutOfStock"]</div>
+                    }
+                </div>
+                @if (Model.Product.Images.Count > 1)
+                {
+                    <div class="grid grid-cols-5 gap-3">
+                        @foreach (var img in Model.Product.Images.OrderBy(i => i.DisplayOrder))
+                        {
+                            <button onclick="document.getElementById('mainImage').src='@img.ImagePath'" class="aspect-square bg-white border-2 border-transparent hover:border-blue-500 dark:bg-gray-900 rounded-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
+                                <img src="@img.ImagePath" alt="" class="w-full h-full object-contain" />
+                            </button>
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="aspect-square bg-gray-100 dark:bg-gray-900 rounded-xl flex items-center justify-center border border-gray-200 dark:border-gray-800 mb-4">
+                    <svg class="w-24 h-24 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                </div>
+            }
+        </div>
+
+        <!-- Right: Product Information & Actions -->
+        <div class="p-6 lg:p-10 flex flex-col justify-center">
+            <div class="mb-4">
+                @if (Model.Product.Category != null)
+                {
+                    <a href="/Product?categoryId=@Model.Product.CategoryId" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline mb-2 block">@Model.Product.Category.Name</a>
+                }
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white leading-tight mb-3">@Model.Product.Name</h1>
+                
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="flex items-center bg-gray-50 dark:bg-gray-800 px-3 py-1.5 rounded-lg">
+                        <div class="flex text-yellow-400 mr-2">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                if (i <= Math.Round(Model.AverageRating))
+                                {
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                }
+                                else
+                                {
+                                    <svg class="w-4 h-4 text-gray-300 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                }
+                            }
+                        </div>
+                        <span class="text-sm font-medium text-gray-900 dark:text-white">@Model.AverageRating.ToString("0.0")</span>
+                        <span class="text-sm font-normal text-gray-500 dark:text-gray-400 ml-1">@T["Review.ReviewCount", Model.ReviewCount]</span>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.Product.Sku))
+                    {
+                        <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">@T["Label.Sku", Model.Product.Sku]</span>
+                    }
+                </div>
+            </div>
+
+            <div class="mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-end gap-4">
+                    <p class="text-4xl font-black text-gray-900 dark:text-white">@Model.Product.EffectivePrice.ToString("C")</p>
+                    @if (Model.Product.HasActiveDiscount)
+                    {
+                        <div class="pb-1">
+                            <div class="text-sm font-semibold text-rose-600">-@Model.Product.DiscountPercentage?.ToString("0.##")%</div>
+                            <div class="text-sm text-gray-400 line-through">@Model.Product.Price.ToString("C")</div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-wider">@T["Label.Description"]</h3>
+                <div class="text-gray-600 dark:text-gray-400 prose prose-sm max-w-none">
+                    @if (!string.IsNullOrEmpty(Model.Product.Description))
+                    {
+                        @Html.Raw(Model.Product.Description.Replace("\n", "<br/>"))
+                    }
+                    else
+                    {
+                        <p class="italic">@T["Product.NoDescription"]</p>
+                    }
+                </div>
+            </div>
+
+            <form action="/Cart/Add" method="post" class="mt-auto space-y-4">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="productId" value="@Model.Product.Id" />
+                
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-wider">@T["Label.Quantity"]</h3>
+                        <div class="flex items-center">
+                            <button type="button" onclick="decrementQty()" class="w-10 h-10 flex-shrink-0 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex items-center justify-center border border-transparent rounded-l-lg focus:ring-2 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 text-gray-900 dark:text-white">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/></svg>
+                            </button>
+                            <input type="number" id="qty" name="quantity" value="1" min="1" max="@Model.Product.StockQuantity" class="w-16 h-10 border-x-0 border-gray-300 bg-gray-50 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                            <button type="button" onclick="incrementQty()" class="w-10 h-10 flex-shrink-0 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex items-center justify-center border border-transparent rounded-r-lg focus:ring-2 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 text-gray-900 dark:text-white">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wider block mb-1">@T["Product.Availability"]</span>
+                        @if (Model.Product.StockQuantity > 0)
+                        {
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
+                                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                @T["Product.StockCount", Model.Product.StockQuantity]
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300">
+                                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                @T["Product.OutOfStock"]
+                            </span>
+                        }
+                    </div>
+                </div>
+
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" @(Model.Product.StockQuantity == 0 ? "disabled" : "") class="flex-1 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-bold rounded-xl text-lg px-5 py-4 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        @T["Action.AddToCart"]
+                    </button>
+                    
+                    <button type="button" onclick="toggleWishlist(@Model.Product.Id)" class="w-16 flex items-center justify-center text-gray-500 bg-white border-2 border-gray-200 hover:bg-gray-50 hover:border-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-xl text-sm px-5 py-4 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-500 dark:focus:ring-gray-700 transition-all">
+                        <svg class="w-6 h-6 @(Model.IsInWishlist ? "text-red-500 fill-current" : "")" id="wishlist-icon-@Model.Product.Id" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    @if (Model.RelatedProducts != null && Model.RelatedProducts.Any())
+    {
+        <div class="mb-14">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white relative inline-block">
+                    @T["Product.RelatedProducts"]
+                    <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-blue-600 rounded"></div>
+                </h2>
+                <a href="/Product?categoryId=@Model.Product.CategoryId" class="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1 group">
+                    @T["Product.ViewAllInCategory"]
+                    <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                @foreach (var p in Model.RelatedProducts)
+                {
+                    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow overflow-hidden group">
+                        <a href="/Product/Details/@p.Id" class="block relative aspect-square bg-gray-50 dark:bg-gray-900 overflow-hidden">
+                            @if (p.Images.Any(i => i.IsPrimary))
+                            {
+                                <img src="@p.Images.First(i => i.IsPrimary).ImagePath" alt="@p.Name" class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300" />
+                            }
+                            else if (p.Images.Any())
+                            {
+                                <img src="@p.Images.First().ImagePath" alt="@p.Name" class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300" />
+                            }
+                        </a>
+                        <div class="p-4">
+                            <a href="/Product/Details/@p.Id" class="text-sm font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 line-clamp-2 mb-2 h-10">@p.Name</a>
+                            <div class="flex items-center justify-between">
+                                <div class="text-right">
+                                    <div class="font-bold text-gray-900 dark:text-white">@p.EffectivePrice.ToString("C")</div>
+                                    @if (p.HasActiveDiscount)
+                                    {
+                                        <div class="text-xs text-gray-400 line-through">@p.Price.ToString("C")</div>
+                                    }
+                                </div>
+                                <button onclick="addToCart(event, @p.Id)" aria-label="@T["Action.AddToCart"]" class="p-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 transition">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- Reviews Section -->
+    <div class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 lg:p-10 border border-gray-100 dark:border-gray-800">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-8 relative inline-block">
+            @T["Review.CustomerReviews"]
+            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-yellow-400 rounded"></div>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Review Stats & Form -->
+            <div class="md:col-span-1 border-r-0 md:border-r border-gray-200 dark:border-gray-700 pr-0 md:pr-8">
+                <div class="text-center md:text-left mb-8">
+                    <div class="text-5xl font-black text-gray-900 dark:text-white mb-2">@Model.AverageRating.ToString("0.0")</div>
+                    <div class="flex justify-center md:justify-start text-yellow-400 mb-2">
+                         @for (int i = 1; i <= 5; i++)
+                         {
+                             if (i <= Math.Round(Model.AverageRating))
+                             {
+                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                             }
+                             else
+                             {
+                                 <svg class="w-5 h-5 text-gray-300 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                             }
+                         }
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">@T["Review.BasedOnCount", Model.ReviewCount]</p>
+                </div>
+
+                @if (!User.Identity!.IsAuthenticated)
+                {
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 text-center">
+                        <p class="mb-4 text-gray-600 dark:text-gray-400 text-sm">@T["Action.SignIn"] @T["Review.LoginPromptSuffix"]</p>
+                        <a href="/Auth/Login?returnUrl=/Product/Details/@Model.Product.Id" class="inline-block w-full text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5">@T["Action.SignIn"]</a>
+                    </div>
+                }
+                else if (Model.UserHasReviewed)
+                {
+                     <div class="bg-green-50 dark:bg-green-900/30 p-6 rounded-xl border border-green-200 dark:border-green-800 text-center">
+                        <svg class="w-8 h-8 text-green-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p class="text-green-800 dark:text-green-400 font-medium text-sm mb-1">@T["Review.AlreadyReviewed"]</p>
+                        @if (Model.CurrentUserReviewStatus == ASPNET_Ecommerce.Models.Catalog.ProductReviewStatus.Hidden)
+                        {
+                            <p class="text-xs text-green-600 dark:text-green-500">@T["Review.HiddenByModeration"]</p>
+                        }
+                        else if (Model.CurrentUserReviewStatus == ASPNET_Ecommerce.Models.Catalog.ProductReviewStatus.Pending)
+                        {
+                            <p class="text-xs text-green-600 dark:text-green-500">@T["Review.PendingApproval"]</p>
+                        }
+                    </div>
+                }
+                else if (Model.CanCurrentUserReview)
+                {
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-4">@T["Review.WriteTitle"]</h4>
+                        <form asp-controller="Product" asp-action="SubmitReview" method="post">
+                            <input type="hidden" asp-for="ReviewForm.ProductId" value="@Model.Product.Id" />
+                            <div class="mb-4">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">@T["Review.YourRating"]</label>
+                                <select asp-for="ReviewForm.Rating" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="5">@T["Review.RatingOption5"]</option>
+                                    <option value="4">@T["Review.RatingOption4"]</option>
+                                    <option value="3">@T["Review.RatingOption3"]</option>
+                                    <option value="2">@T["Review.RatingOption2"]</option>
+                                    <option value="1">@T["Review.RatingOption1"]</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label asp-for="ReviewForm.Comment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">@T["Label.CommentOptional"]</label>
+                                <textarea asp-for="ReviewForm.Comment" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="@T["Review.CommentPlaceholder"]"></textarea>
+                                <span asp-validation-for="ReviewForm.Comment" class="mt-1 text-sm text-red-600 dark:text-red-500"></span>
+                            </div>
+                            <button type="submit" class="w-full text-white bg-gray-900 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-800 transition">@T["Action.SubmitReview"]</button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                     <div class="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-xl border border-blue-200 dark:border-blue-800 text-center">
+                        <svg class="w-8 h-8 text-blue-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p class="text-blue-800 dark:text-blue-400 font-medium text-sm">@Model.ReviewEligibilityMessage</p>
+                    </div>
+                }
+            </div>
+
+            <!-- Review List -->
+            <div class="md:col-span-2 space-y-6">
+                @if (Model.Reviews != null && Model.Reviews.Any())
+                {
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm">
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg mr-3 shadow-sm">
+                                        @(review.User?.FullName?.Substring(0, 1).ToUpper() ?? "U")
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-900 dark:text-white">@(review.User?.FullName ?? T["Review.UnknownUser"].Value)</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">@review.CreatedAtUtc.ToString("MMM dd, yyyy")</p>
+                                    </div>
+                                </div>
+                                <div class="flex text-yellow-400">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= review.Rating)
+                                        {
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                        }
+                                        else
+                                        {
+                                            <svg class="w-4 h-4 text-gray-300 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">
+                                @review.Comment
+                            </p>
+                            @if (!string.IsNullOrWhiteSpace(review.AdminReply))
+                            {
+                                <div class="mt-4 rounded-xl border border-blue-200 bg-blue-50 dark:border-blue-900 dark:bg-blue-950/30 p-4">
+                                    <p class="text-xs font-semibold uppercase tracking-wide text-blue-700 dark:text-blue-300 mb-2">@T["Review.StoreReply"]</p>
+                                    <p class="text-sm text-blue-900 dark:text-blue-100 whitespace-pre-line">@review.AdminReply</p>
+                                    @if (review.AdminRepliedAtUtc.HasValue)
+                                    {
+                                        <p class="mt-2 text-xs text-blue-700/80 dark:text-blue-300/80">@T["Review.RepliedOn", review.AdminRepliedAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm")]</p>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-center py-12 px-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700">
+                        <svg class="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-1">@T["Review.NoneYetShort"]</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">@T["Review.BeFirst"]</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function incrementQty() {
+            const input = document.getElementById('qty');
+            const max = parseInt(input.getAttribute('max'));
+            let current = parseInt(input.value);
+            if (!isNaN(current) && current < max) {
+                input.value = current + 1;
+            }
+        }
+
+        function decrementQty() {
+            const input = document.getElementById('qty');
+            let current = parseInt(input.value);
+            if (!isNaN(current) && current > 1) {
+                input.value = current - 1;
+            }
+        }
+
+        function toggleWishlist(productId) {
+            fetch(`/Wishlist/Toggle?productId=${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+                }
+            }).then(async response => {
+                if (!response.ok) {
+                    const payload = await response.json().catch(() => null);
+                    throw new Error(payload?.message || 'Unable to update wishlist.');
+                }
+
+                const payload = await response.json();
+                const icon = document.getElementById(`wishlist-icon-${productId}`);
+                icon.classList.toggle('text-red-500', payload.isInWishlist);
+                icon.classList.toggle('fill-current', payload.isInWishlist);
+
+                if (typeof window.updateWishlistCount === 'function') {
+                    window.updateWishlistCount(payload.itemCount);
+                }
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+
+        function addToCart(event, productId) {
+            event.preventDefault();
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/Cart/Add';
+            
+            const idInput = document.createElement('input');
+            idInput.type = 'hidden';
+            idInput.name = 'productId';
+            idInput.value = productId;
+            
+            const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]').cloneNode();
+            
+            form.appendChild(idInput);
+            if (tokenInput) form.appendChild(tokenInput);
+            
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+}

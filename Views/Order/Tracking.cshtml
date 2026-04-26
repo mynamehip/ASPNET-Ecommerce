@@ -1,0 +1,178 @@
+@model ASPNET_Ecommerce.Models.ViewModels.Order.OrderTrackingViewModel
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = T["Order.Tracking.Title"];
+
+    var statusStep = Model.Status switch
+    {
+        ASPNET_Ecommerce.Models.Orders.OrderStatus.Pending => 1,
+        ASPNET_Ecommerce.Models.Orders.OrderStatus.Processing => 2,
+        ASPNET_Ecommerce.Models.Orders.OrderStatus.Completed => 3,
+        _ => 0
+    };
+
+    var paymentColor = Model.PaymentStatus switch
+    {
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Paid => "emerald",
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Authorized => "blue",
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Pending => "amber",
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Failed => "red",
+        _ => "gray"
+    };
+
+    var statusText = Model.Status switch
+    {
+        ASPNET_Ecommerce.Models.Orders.OrderStatus.Pending => T["Order.Status.Pending"].Value,
+        ASPNET_Ecommerce.Models.Orders.OrderStatus.Processing => T["Order.Status.Processing"].Value,
+        ASPNET_Ecommerce.Models.Orders.OrderStatus.Completed => T["Order.Status.Completed"].Value,
+        ASPNET_Ecommerce.Models.Orders.OrderStatus.Cancelled => T["Order.Status.Cancelled"].Value,
+        _ => Model.Status.ToString()
+    };
+
+    var paymentStatusText = Model.PaymentStatus switch
+    {
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Pending => T["Order.PaymentStatus.Pending"].Value,
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Authorized => T["Order.PaymentStatus.Authorized"].Value,
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Paid => T["Order.PaymentStatus.Paid"].Value,
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Failed => T["Order.PaymentStatus.Failed"].Value,
+        ASPNET_Ecommerce.Models.Orders.PaymentStatus.Refunded => T["Order.PaymentStatus.Refunded"].Value,
+        _ => Model.PaymentStatus.ToString()
+    };
+
+    var paymentMethodText = Model.PaymentMethod switch
+    {
+        ASPNET_Ecommerce.Models.Orders.PaymentMethod.CashOnDelivery => T["Payment.CashOnDelivery"].Value,
+        ASPNET_Ecommerce.Models.Orders.PaymentMethod.DemoGateway => T["Payment.DemoGateway"].Value,
+        _ => Model.PaymentMethod.ToString()
+    };
+}
+
+<div class="max-w-5xl mx-auto">
+    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
+        <div>
+            <div class="text-sm font-medium text-gray-400 uppercase tracking-wider">@T["Order.Tracking.Header"]</div>
+            <h1 class="mt-2 text-3xl font-bold text-gray-900">@Model.OrderNumber</h1>
+            <p class="mt-2 text-sm text-gray-500">@T["Order.Tracking.PlacedFor", Model.CreatedAtUtc.ToLocalTime().ToString("dd MMM yyyy, HH:mm"), Model.ShippingFullName]</p>
+        </div>
+        @if (Model.IsGuestOrder)
+        {
+            <div class="flex flex-wrap gap-3">
+                <a asp-controller="Order" asp-action="Confirmation" asp-route-id="@Model.OrderId"
+                   class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+                    @T["Order.BackToConfirmation"]
+                </a>
+                <a asp-controller="Order" asp-action="Lookup" asp-route-orderNumber="@Model.OrderNumber"
+                   class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+                    @T["Order.LookupByCode"]
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="flex flex-wrap gap-3">
+                <a asp-controller="Order" asp-action="Details" asp-route-id="@Model.OrderId"
+                   class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+                    @T["Order.BackToOrder"]
+                </a>
+                <a asp-controller="Order" asp-action="Lookup" asp-route-orderNumber="@Model.OrderNumber"
+                   class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+                    @T["Order.LookupByCode"]
+                </a>
+            </div>
+        }
+    </div>
+
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            @for (var step = 1; step <= 3; step++)
+            {
+                var isDone = statusStep >= step;
+                var isCancelled = Model.Status == ASPNET_Ecommerce.Models.Orders.OrderStatus.Cancelled;
+                var title = step == 1 ? T["Order.Tracking.StepPlaced"].Value : step == 2 ? T["Order.Tracking.StepInProgress"].Value : T["Order.Tracking.StepDelivered"].Value;
+                var subtitle = step == 1
+                    ? Model.CreatedAtUtc.ToLocalTime().ToString("dd MMM yyyy, HH:mm")
+                    : step == 2
+                        ? (Model.ShippedAtUtc.HasValue ? Model.ShippedAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm") : T["Order.Tracking.WaitingDispatch"].Value)
+                        : (Model.DeliveredAtUtc.HasValue ? Model.DeliveredAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm") : T["Order.Tracking.PendingCompletion"].Value);
+
+                <div class="rounded-2xl border px-4 py-4 @(isCancelled ? "border-red-200 bg-red-50" : isDone ? "border-brand-200 bg-brand-50" : "border-gray-200 bg-gray-50")">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold @(isCancelled ? "bg-red-500 text-white" : isDone ? "bg-brand-600 text-white" : "bg-white text-gray-400 border border-gray-200")">@step</div>
+                        <div>
+                            <div class="text-sm font-semibold text-gray-900">@title</div>
+                            <div class="text-xs text-gray-500 mt-1">@subtitle</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-6">
+        <section class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
+            <h2 class="text-lg font-bold text-gray-900">@T["Order.ShipmentSummary"]</h2>
+            <div class="mt-5 space-y-4 text-sm">
+                <div class="flex items-start justify-between gap-4 border-b border-gray-100 pb-4">
+                    <span class="text-gray-500">@T["Order.CurrentStatus"]</span>
+                    <span class="font-semibold text-gray-900">@statusText</span>
+                </div>
+                <div class="flex items-start justify-between gap-4 border-b border-gray-100 pb-4">
+                    <span class="text-gray-500">@T["Order.Destination"]</span>
+                    <span class="font-semibold text-gray-900">@(string.IsNullOrWhiteSpace(Model.ShippingWard) ? Model.ShippingProvince : $"{Model.ShippingWard}, {Model.ShippingProvince}")</span>
+                </div>
+                <div class="flex items-start justify-between gap-4 border-b border-gray-100 pb-4">
+                    <span class="text-gray-500">@T["Order.Carrier"]</span>
+                    <span class="font-semibold text-gray-900">@(string.IsNullOrWhiteSpace(Model.ShipmentCarrier) ? T["Order.AwaitingAssignment"].Value : Model.ShipmentCarrier)</span>
+                </div>
+                <div class="flex items-start justify-between gap-4 border-b border-gray-100 pb-4">
+                    <span class="text-gray-500">@T["Order.TrackingNumber"]</span>
+                    <span class="font-mono text-xs font-semibold text-gray-900 break-all">@(string.IsNullOrWhiteSpace(Model.TrackingNumber) ? T["Order.NotAvailableYet"].Value : Model.TrackingNumber)</span>
+                </div>
+                <div class="flex items-start justify-between gap-4 border-b border-gray-100 pb-4">
+                    <span class="text-gray-500">@T["Order.EstimatedDelivery"]</span>
+                    <span class="font-semibold text-gray-900">@(Model.EstimatedDeliveryDateUtc.HasValue ? Model.EstimatedDeliveryDateUtc.Value.ToLocalTime().ToString("dd MMM yyyy") : T["Order.Pending"].Value)</span>
+                </div>
+                <div class="flex items-start justify-between gap-4">
+                    <span class="text-gray-500">@T["Order.DeliveredAt"]</span>
+                    <span class="font-semibold text-gray-900">@(Model.DeliveredAtUtc.HasValue ? Model.DeliveredAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm") : T["Order.NotDeliveredYet"].Value)</span>
+                </div>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.TrackingUrl))
+            {
+                <a href="@Model.TrackingUrl" target="_blank" rel="noreferrer"
+                   class="mt-6 inline-flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition">
+                    @T["Order.OpenCarrierTracking"]
+                </a>
+            }
+        </section>
+
+        <aside class="space-y-6">
+            <section class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
+                <h2 class="text-lg font-bold text-gray-900">@T["Order.PaymentSnapshot"]</h2>
+                <div class="mt-4 space-y-3 text-sm">
+                    <div class="flex items-center justify-between gap-4">
+                        <span class="text-gray-500">@T["Order.Method"]</span>
+                        <span class="font-semibold text-gray-900">@paymentMethodText</span>
+                    </div>
+                    <div class="flex items-center justify-between gap-4">
+                        <span class="text-gray-500">@T["Order.Provider"]</span>
+                        <span class="font-semibold text-gray-900">@Model.PaymentProvider</span>
+                    </div>
+                    <div class="flex items-center justify-between gap-4">
+                        <span class="text-gray-500">@T["Label.Status"]</span>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-@(paymentColor)-100 text-@(paymentColor)-700">@paymentStatusText</span>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(Model.PaymentTransactionReference))
+                    {
+                        <div class="pt-2 border-t border-dashed border-gray-200">
+                            <div class="text-gray-500">@T["Order.TransactionReference"]</div>
+                            <div class="mt-1 font-mono text-xs text-gray-900 break-all">@Model.PaymentTransactionReference</div>
+                        </div>
+                    }
+                </div>
+            </section>
+        </aside>
+    </div>
+</div>

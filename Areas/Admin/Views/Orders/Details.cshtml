@@ -1,0 +1,410 @@
+@model ASPNET_Ecommerce.Models.ViewModels.Admin.OrderAdminDetailsViewModel
+@using ASPNET_Ecommerce.Models.Orders
+@using Microsoft.AspNetCore.Mvc.Rendering
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = T["Order.Admin.Details.Title"];
+
+    var statusColor = Model.Status switch
+    {
+        OrderStatus.Pending => "amber",
+        OrderStatus.Processing => "blue",
+        OrderStatus.Completed => "emerald",
+        OrderStatus.Cancelled => "red",
+        _ => "gray"
+    };
+
+    var paymentColor = Model.PaymentStatus switch
+    {
+        PaymentStatus.Paid => "emerald",
+        PaymentStatus.Authorized => "blue",
+        PaymentStatus.Pending => "amber",
+        PaymentStatus.Failed => "red",
+        _ => "gray"
+    };
+
+    string LocalizeOrderStatus(OrderStatus status) => status switch
+    {
+        OrderStatus.Pending => T["Order.Status.Pending"].Value,
+        OrderStatus.Processing => T["Order.Status.Processing"].Value,
+        OrderStatus.Completed => T["Order.Status.Completed"].Value,
+        OrderStatus.Cancelled => T["Order.Status.Cancelled"].Value,
+        _ => status.ToString()
+    };
+
+    string LocalizePaymentStatus(PaymentStatus status) => status switch
+    {
+        PaymentStatus.Pending => T["Order.PaymentStatus.Pending"].Value,
+        PaymentStatus.Authorized => T["Order.PaymentStatus.Authorized"].Value,
+        PaymentStatus.Paid => T["Order.PaymentStatus.Paid"].Value,
+        PaymentStatus.Failed => T["Order.PaymentStatus.Failed"].Value,
+        PaymentStatus.Refunded => T["Order.PaymentStatus.Refunded"].Value,
+        _ => status.ToString()
+    };
+
+    var statusText = LocalizeOrderStatus(Model.Status);
+    var paymentStatusText = LocalizePaymentStatus(Model.PaymentStatus);
+    var paymentMethodText = Model.PaymentMethod switch
+    {
+        PaymentMethod.CashOnDelivery => T["Payment.CashOnDelivery"].Value,
+        PaymentMethod.DemoGateway => T["Payment.DemoGateway"].Value,
+        _ => Model.PaymentMethod.ToString()
+    };
+    var currencyCode = string.IsNullOrWhiteSpace(Model.CurrencyCode) || Model.CurrencyCode.All(char.IsDigit)
+        ? "VND"
+        : Model.CurrencyCode;
+    var localizedStatusOptions = new List<SelectListItem>
+    {
+        new() { Value = nameof(OrderStatus.Pending), Text = T["Order.Status.Pending"].Value },
+        new() { Value = nameof(OrderStatus.Processing), Text = T["Order.Status.Processing"].Value },
+        new() { Value = nameof(OrderStatus.Completed), Text = T["Order.Status.Completed"].Value },
+        new() { Value = nameof(OrderStatus.Cancelled), Text = T["Order.Status.Cancelled"].Value }
+    };
+}
+
+<div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
+    <div>
+        <div class="text-sm font-medium text-gray-400 uppercase tracking-wider">@T["Order.Admin.Header"]</div>
+        <h1 class="mt-1 text-2xl font-bold text-gray-900">@Model.OrderNumber</h1>
+        <p class="mt-1 text-sm text-gray-500">@T["Order.Admin.PlacedBy", Model.CustomerName, Model.CreatedAtUtc.ToLocalTime().ToString("dd MMM yyyy, HH:mm")]</p>
+    </div>
+    <a asp-area="Admin" asp-controller="Orders" asp-action="Index"
+       class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-xl hover:bg-gray-50 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        @T["Order.BackToOrders"]
+    </a>
+</div>
+
+@if (TempData["StatusMessage"] is string statusMessage)
+{
+    <div class="flex items-center gap-2 p-4 mb-4 text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-lg">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        @statusMessage
+    </div>
+}
+
+@if (TempData["ErrorMessage"] is string errorMessage)
+{
+    <div class="flex items-center gap-2 p-4 mb-4 text-sm text-red-800 bg-red-50 border border-red-200 rounded-lg">
+        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+        @errorMessage
+    </div>
+}
+
+<div class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_380px] gap-6">
+    <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between">
+            <h2 class="text-lg font-bold text-gray-900">@T["Order.OrderItems"]</h2>
+            <span class="text-sm text-gray-400">@T["Order.ItemCount", Model.ItemCount]</span>
+        </div>
+
+        <div class="divide-y divide-gray-100">
+            @foreach (var item in Model.Items)
+            {
+                <div class="px-6 py-4 flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center shrink-0">
+                        <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"
+                           class="text-sm font-semibold text-gray-900 hover:text-brand-700 transition line-clamp-1">@item.ProductName</a>
+                        <div class="flex items-center gap-3 mt-1 text-xs text-gray-400">
+                            @if (!string.IsNullOrWhiteSpace(item.ProductSku))
+                            {
+                                <span>@T["Product.Sku", item.ProductSku]</span>
+                                <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+                            }
+                            <span>@T["Order.PriceQuantityDynamic", item.UnitPrice.ToString("N0"), currencyCode, item.Quantity]</span>
+                        </div>
+                    </div>
+                    <div class="text-right shrink-0">
+                        <div class="text-base font-bold text-gray-900">@item.LineTotal.ToString("N0")</div>
+                        <div class="text-xs text-gray-400">@currencyCode</div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 space-y-2 text-sm">
+            <div class="flex items-center justify-between">
+                <span class="font-semibold text-gray-700">@T["Label.Subtotal"]</span>
+                <span class="font-semibold text-gray-900">@Model.Subtotal.ToString("N0") @currencyCode</span>
+            </div>
+            <div class="flex items-center justify-between text-gray-600">
+                <span>@T["Summary.Discount"]</span>
+                <span>-@Model.DiscountAmount.ToString("N0") @currencyCode</span>
+            </div>
+            <div class="flex items-center justify-between text-gray-600">
+                <span>@T["Summary.Shipping"]</span>
+                <span>@Model.ShippingFee.ToString("N0") @currencyCode</span>
+            </div>
+            <div class="flex items-center justify-between text-gray-600">
+                <span>@T["Summary.Tax", Model.TaxRate.ToString("0.##")]</span>
+                <span>@Model.TaxAmount.ToString("N0") @currencyCode</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-gray-200 pt-2">
+                <span class="text-sm font-semibold text-gray-700">@T["Label.Total"]</span>
+                <span class="text-xl font-extrabold text-brand-600">@Model.TotalAmount.ToString("N0") <span class="text-sm font-medium text-gray-400">@currencyCode</span></span>
+            </div>
+        </div>
+    </section>
+
+    <div class="space-y-6">
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+            <div class="flex items-center justify-between gap-4">
+                <div>
+                    <div class="text-xs font-medium text-gray-400 uppercase tracking-wider">@T["Order.CurrentStatus"]</div>
+                    <span class="inline-flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-full text-xs font-bold bg-@(statusColor)-100 text-@(statusColor)-800">@statusText</span>
+                </div>
+                @if (Model.UpdatedAtUtc.HasValue)
+                {
+                    <div class="text-right text-xs text-gray-400">
+                        <div>@T["Order.LastUpdate"]</div>
+                        <div class="mt-1 text-sm font-medium text-gray-700">@Model.UpdatedAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</div>
+                    </div>
+                }
+            </div>
+
+            <form asp-area="Admin" asp-controller="Orders" asp-action="UpdateStatus" asp-route-id="@Model.OrderId" method="post" class="mt-5 space-y-4">
+                @Html.AntiForgeryToken()
+                <input asp-for="StatusForm.OrderId" type="hidden" />
+
+                <div asp-validation-summary="ModelOnly" class="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"></div>
+
+                <div>
+                    <label for="@Html.IdFor(model => model.StatusForm.Status)" class="block text-sm font-medium text-gray-700 mb-1">@T["Order.OrderStatus"]</label>
+                    <select asp-for="StatusForm.Status" asp-items="localizedStatusOptions"
+                            class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></select>
+                    <span asp-validation-for="StatusForm.Status" class="text-red-500 text-sm mt-1"></span>
+                </div>
+
+                <div>
+                    <label for="@Html.IdFor(model => model.StatusForm.ShipmentCarrier)" class="block text-sm font-medium text-gray-700 mb-1">@T["Order.Carrier"]</label>
+                    <input asp-for="StatusForm.ShipmentCarrier" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="StatusForm.ShipmentCarrier" class="text-red-500 text-sm mt-1"></span>
+                </div>
+
+                <div>
+                    <label for="@Html.IdFor(model => model.StatusForm.TrackingNumber)" class="block text-sm font-medium text-gray-700 mb-1">@T["Order.TrackingNumber"]</label>
+                    <input asp-for="StatusForm.TrackingNumber" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="StatusForm.TrackingNumber" class="text-red-500 text-sm mt-1"></span>
+                </div>
+
+                <div>
+                    <label for="@Html.IdFor(model => model.StatusForm.TrackingUrl)" class="block text-sm font-medium text-gray-700 mb-1">@T["Order.Admin.TrackingUrl"]</label>
+                    <input asp-for="StatusForm.TrackingUrl" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="StatusForm.TrackingUrl" class="text-red-500 text-sm mt-1"></span>
+                </div>
+
+                <div>
+                    <label for="@Html.IdFor(model => model.StatusForm.EstimatedDeliveryDateUtc)" class="block text-sm font-medium text-gray-700 mb-1">@T["Order.EstimatedDelivery"]</label>
+                    <input asp-for="StatusForm.EstimatedDeliveryDateUtc" type="date" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="StatusForm.EstimatedDeliveryDateUtc" class="text-red-500 text-sm mt-1"></span>
+                </div>
+
+                <div>
+                    <label for="@Html.IdFor(model => model.StatusForm.StatusNote)" class="block text-sm font-medium text-gray-700 mb-1">@T["Order.WorkflowNote"]</label>
+                    <textarea asp-for="StatusForm.StatusNote" rows="3" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                    <span asp-validation-for="StatusForm.StatusNote" class="text-red-500 text-sm mt-1"></span>
+                </div>
+
+                @if (Model.StatusForm.Status == OrderStatus.Cancelled || Model.Status == OrderStatus.Cancelled)
+                {
+                    <div>
+                        <label for="@Html.IdFor(model => model.StatusForm.CancellationReason)" class="block text-sm font-medium text-gray-700 mb-1">@T["Order.CancellationReason"]</label>
+                        <textarea asp-for="StatusForm.CancellationReason" rows="3" class="block w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                        <span asp-validation-for="StatusForm.CancellationReason" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                }
+
+                <button type="submit"
+                        class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition">
+                    @T["Order.Admin.UpdateWorkflow"]
+                </button>
+            </form>
+        </section>
+
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="px-5 py-4 border-b border-gray-100">
+                <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider">@T["Order.PaymentSnapshot"]</h2>
+            </div>
+            <div class="px-5 py-4 text-sm space-y-3">
+                <div class="flex items-center justify-between gap-4">
+                    <span class="text-gray-400">@T["Order.Method"]</span>
+                    <span class="font-semibold text-gray-900">@paymentMethodText</span>
+                </div>
+                <div class="flex items-center justify-between gap-4">
+                    <span class="text-gray-400">@T["Order.Provider"]</span>
+                    <span class="font-semibold text-gray-900">@Model.PaymentProvider</span>
+                </div>
+                <div class="flex items-center justify-between gap-4">
+                    <span class="text-gray-400">@T["Label.Status"]</span>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-@(paymentColor)-100 text-@(paymentColor)-700">@paymentStatusText</span>
+                </div>
+                @if (Model.PaymentAuthorizedAtUtc.HasValue)
+                {
+                    <div>
+                        <div class="text-gray-400">@T["Order.AuthorizedAt"]</div>
+                        <div class="text-gray-700">@Model.PaymentAuthorizedAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</div>
+                    </div>
+                }
+                @if (Model.PaidAtUtc.HasValue)
+                {
+                    <div>
+                        <div class="text-gray-400">@T["Order.PaidAt"]</div>
+                        <div class="text-gray-700">@Model.PaidAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</div>
+                    </div>
+                }
+                @if (!string.IsNullOrWhiteSpace(Model.PaymentTransactionReference))
+                {
+                    <div>
+                        <div class="text-gray-400">@T["Order.TransactionReference"]</div>
+                        <div class="font-mono text-xs text-gray-700 break-all">@Model.PaymentTransactionReference</div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="px-5 py-4 border-b border-gray-100">
+                <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider">@T["Order.WorkflowAudit"]</h2>
+            </div>
+            <div class="px-5 py-4 text-sm space-y-3 text-gray-600">
+                @if (Model.StatusHistory.Count == 0)
+                {
+                    <div>@T["Order.NoWorkflowEntries"]</div>
+                }
+                else
+                {
+                    @foreach (var entry in Model.StatusHistory)
+                    {
+                        <div class="border-b border-dashed border-gray-200 pb-3 last:border-b-0 last:pb-0">
+                            <div class="font-semibold text-gray-900">@LocalizeOrderStatus(entry.PreviousStatus) → @LocalizeOrderStatus(entry.NewStatus)</div>
+                            <div class="text-xs text-gray-400 mt-1">@entry.ChangedByName • @entry.ChangedAtUtc.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</div>
+                            @if (!string.IsNullOrWhiteSpace(entry.Note))
+                            {
+                                <div class="mt-1">@entry.Note</div>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="px-5 py-4 border-b border-gray-100">
+                <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider">@T["Order.Admin.CustomerSnapshot"]</h2>
+            </div>
+            <div class="px-5 py-4 text-sm space-y-3">
+                <div>
+                    <div class="text-gray-400">@T["Order.Customer"]</div>
+                    <div class="font-semibold text-gray-900">@Model.CustomerName</div>
+                </div>
+                <div>
+                    <div class="text-gray-400">@T["Checkout.Field.Email"]</div>
+                    <div class="text-gray-700">@Model.CustomerEmail</div>
+                </div>
+                <div>
+                    <div class="text-gray-400">@T["Order.UserId"]</div>
+                    <div class="font-mono text-xs text-gray-700 break-all">@Model.UserId</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div class="px-5 py-4 border-b border-gray-100">
+                <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider">@T["Order.Admin.ShippingSnapshot"]</h2>
+            </div>
+            <div class="px-5 py-4 text-sm space-y-2.5 text-gray-600">
+                <div class="font-semibold text-gray-900">@Model.ShippingFullName</div>
+                <div>@Model.ShippingEmail</div>
+                <div>@Model.ShippingPhone</div>
+                <div class="border-t border-dashed border-gray-200 pt-2.5 mt-1 leading-relaxed">
+                    <div>@Model.ShippingAddress</div>
+                    @if (!string.IsNullOrWhiteSpace(Model.ShippingWard))
+                    {
+                        <div>@Model.ShippingWard</div>
+                    }
+                    <div>@Model.ShippingProvince</div>
+                </div>
+                @if (!string.IsNullOrWhiteSpace(Model.Notes))
+                {
+                    <div class="border-t border-dashed border-gray-200 pt-2.5 mt-1">
+                        <div class="text-gray-400">@T["Order.DeliveryNotes"]</div>
+                        <div class="mt-1 whitespace-pre-line">@Model.Notes</div>
+                    </div>
+                }
+                <div class="border-t border-dashed border-gray-200 pt-2.5 mt-1 space-y-2">
+                    <div>
+                        <div class="text-gray-400">@T["Order.Carrier"]</div>
+                        <div>@(string.IsNullOrWhiteSpace(Model.ShipmentCarrier) ? T["Order.Pending"].Value : Model.ShipmentCarrier)</div>
+                    </div>
+                    <div>
+                        <div class="text-gray-400">@T["Order.TrackingNumber"]</div>
+                        <div class="font-mono text-xs break-all">@(string.IsNullOrWhiteSpace(Model.TrackingNumber) ? T["Order.Pending"].Value : Model.TrackingNumber)</div>
+                    </div>
+                    <div>
+                        <div class="text-gray-400">@T["Order.EstimatedDelivery"]</div>
+                        <div>@(Model.EstimatedDeliveryDateUtc.HasValue ? Model.EstimatedDeliveryDateUtc.Value.ToLocalTime().ToString("dd MMM yyyy") : T["Order.Pending"].Value)</div>
+                    </div>
+                    @if (Model.ShippedAtUtc.HasValue)
+                    {
+                        <div>
+                            <div class="text-gray-400">@T["Order.ShippedAt"]</div>
+                            <div>@Model.ShippedAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</div>
+                        </div>
+                    }
+                    @if (Model.DeliveredAtUtc.HasValue)
+                    {
+                        <div>
+                            <div class="text-gray-400">@T["Order.DeliveredAt"]</div>
+                            <div>@Model.DeliveredAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</div>
+                        </div>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.TrackingUrl))
+                    {
+                        <div>
+                            <a href="@Model.TrackingUrl" target="_blank" rel="noreferrer" class="text-brand-600 hover:text-brand-700 font-semibold">@T["Order.OpenCarrierTracking"]</a>
+                        </div>
+                    }
+                </div>
+
+                @if (Model.CancelledAtUtc.HasValue)
+                {
+                    <div class="border-t border-dashed border-gray-200 pt-2.5 mt-1 space-y-2">
+                        <div>
+                            <div class="text-gray-400">@T["Order.CancelledAt"]</div>
+                            <div>@Model.CancelledAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm")</div>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(Model.CancelledByName))
+                        {
+                            <div>
+                                <div class="text-gray-400">@T["Order.CancelledBy"]</div>
+                                <div>@Model.CancelledByName</div>
+                            </div>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.CancellationReason))
+                        {
+                            <div>
+                                <div class="text-gray-400">@T["Order.Reason"]</div>
+                                <div class="whitespace-pre-line">@Model.CancellationReason</div>
+                            </div>
+                        }
+                        @if (Model.IsRefundReady)
+                        {
+                            <div>
+                                <div class="text-gray-400">@T["Order.RefundQueue"]</div>
+                                <div>@(Model.RefundReadyAtUtc.HasValue ? T["Order.ReadySince", Model.RefundReadyAtUtc.Value.ToLocalTime().ToString("dd MMM yyyy, HH:mm")].Value : T["Order.Ready"].Value)</div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

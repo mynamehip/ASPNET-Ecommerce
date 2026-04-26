@@ -1,0 +1,108 @@
+@model ProductFormViewModel
+@inject IStringLocalizer<SharedResource> T
+
+@{
+    ViewData["Title"] = T["Action.CreateProduct"];
+}
+
+<div class="max-w-4xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">@T["Action.CreateProduct"]</h1>
+            <p class="text-sm text-gray-500 mt-1">@T["Admin.Products.CreateDescription"]</p>
+        </div>
+        <a asp-area="Admin" asp-controller="Products" asp-action="Index"
+           class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            @T["Action.Back"]
+        </a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
+        <form asp-area="Admin" asp-controller="Products" asp-action="Create" method="post" enctype="multipart/form-data" class="space-y-6">
+            <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm bg-red-50 rounded-lg p-3"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-2">
+                    <label asp-for="Name" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                    <input asp-for="Name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="Name" class="text-red-500 text-sm mt-1"></span>
+                </div>
+                <div>
+                    <label asp-for="Sku" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                    <input asp-for="Sku" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="Sku" class="text-red-500 text-sm mt-1"></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label asp-for="CategoryId" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                    <select asp-for="CategoryId" asp-items="Model.Categories" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition">
+                        <option value="">@T["Admin.Products.ChooseCategory"]</option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-red-500 text-sm mt-1"></span>
+                </div>
+                <div>
+                    <label asp-for="Price" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                    <input asp-for="Price" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="Price" class="text-red-500 text-sm mt-1"></span>
+                </div>
+                <div>
+                    <label asp-for="StockQuantity" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                    <input asp-for="StockQuantity" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                    <span asp-validation-for="StockQuantity" class="text-red-500 text-sm mt-1"></span>
+                </div>
+            </div>
+
+            <div class="rounded-xl border border-amber-200 bg-amber-50 p-4 space-y-4">
+                <div>
+                    <h2 class="text-sm font-semibold text-amber-900">Direct discount</h2>
+                    <p class="mt-1 text-xs text-amber-700">Phase 1 stores product-level discount data so later homepage and storefront pricing can reuse one shared rule.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                    <label class="inline-flex items-center gap-2 pt-8 text-sm text-gray-700">
+                        <input asp-for="IsDiscountActive" class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
+                        <span>Enable discount</span>
+                    </label>
+                    <div>
+                        <label asp-for="DiscountPercentage" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                        <input asp-for="DiscountPercentage" type="text" inputmode="decimal" asp-format="{0:0.##}" class="block w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition" />
+                        <span asp-validation-for="DiscountPercentage" class="text-red-500 text-sm mt-1"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label asp-for="Status" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                    <select asp-for="Status" asp-items="Html.GetEnumSelectList<ProductStatus>()" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></select>
+                    <span asp-validation-for="Status" class="text-red-500 text-sm mt-1"></span>
+                </div>
+            </div>
+
+            <div>
+                <label asp-for="Description" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                <textarea asp-for="Description" rows="5" class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm focus:border-brand-500 focus:ring-brand-500 transition"></textarea>
+                <span asp-validation-for="Description" class="text-red-500 text-sm mt-1"></span>
+            </div>
+
+            <div>
+                <label asp-for="UploadedImages" class="block text-sm font-medium text-gray-700 mb-1"></label>
+                <input asp-for="UploadedImages" type="file" multiple accept=".jpg,.jpeg,.png,.webp"
+                       class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 transition" />
+                <p class="mt-1 text-xs text-gray-400">@T["Admin.Products.UploadHint"]</p>
+                <span asp-validation-for="UploadedImages" class="text-red-500 text-sm mt-1"></span>
+            </div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button type="submit" class="px-5 py-2.5 text-sm font-semibold text-white bg-brand-600 rounded-lg hover:bg-brand-700 focus:ring-4 focus:ring-brand-200 transition">@T["Action.CreateProduct"]</button>
+                <a asp-area="Admin" asp-controller="Products" asp-action="Index" class="px-5 py-2.5 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition">@T["Action.Cancel"]</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-800 antialiased;
+  }
+}
+
+@layer components {
+  .field-validation-error {
+    @apply text-red-500 text-sm mt-1;
+  }
+  .input-validation-error {
+    @apply border-red-500 ring-red-500;
+  }
+  .validation-summary-errors ul {
+    @apply list-disc list-inside text-red-600 text-sm space-y-1;
+  }
+}
